@@ -12,11 +12,11 @@ public readonly partial struct Dual : INumber<Dual>
 
     static Dual INumberBase<Dual>.Zero => throw new NotImplementedException();
 
-    public static Dual Abs(Dual value)
+    public static double Abs(Dual value)
     {
         Complex c = new(value.real, value.dual);
-        var tmp = Complex.Abs(c);
-        return new(c.Real, c.Imaginary);
+        return Complex.Abs(c);
+        //return new(c.Real, c.Imaginary);
     }
 
     public static bool IsCanonical(Dual value)
