@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,21 +16,24 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '8.0.x' # Adjust this to match your project's .NET version
+        dotnet-version: '8.0.x'
     
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Restore dependencies for DualNumbers
+      run: dotnet restore DualNumbers/DualNumbers.csproj
     
-    - name: Build
-      run: dotnet build --no-restore
+    - name: Build DualNumbers
+      run: dotnet build DualNumbers/DualNumbers.csproj --no-restore
     
-    - name: Test with Coverage
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./TestResults/Coverage/
+    - name: Restore dependencies for DualNumbers.Test
+      run: dotnet restore DualNumbers.Test/DualNumbers.Test.csproj
+    
+    - name: Test DualNumbers.Test
+      run: dotnet test DualNumbers.Test/DualNumbers.Test.csproj --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./TestResults/Coverage/
     
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./TestResults/Coverage/coverage.opencover.xml
-        flag-name: run-${{ matrix.os }}-${{ matrix.dotnet }}
+        path-to-lcov: ./DualNumbers.Test/TestResults/Coverage/coverage.opencover.xml
+        flag-name: run-${{ github.run_id }}
         coveralls-endpoint: https://coveralls.io
