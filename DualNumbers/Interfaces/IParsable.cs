@@ -5,11 +5,7 @@ namespace DualNumbers;
 
 public readonly partial struct Dual : IParsable<Dual>
 {
-    public static Dual Parse(string s, IFormatProvider? provider)
-    {
-        Complex tmp = Complex.Parse(s, provider);
-        return new(tmp.Real, tmp.Imaginary);
-    }
+    public static Dual Parse(string s, IFormatProvider? provider) => Helper.ToDual(Complex.Parse(s, provider));
 
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Dual result)
     {

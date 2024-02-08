@@ -69,7 +69,7 @@ public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
         => Parse(s, provider);
 
     static Dual IUtf8SpanParsable<Dual>.Parse(ReadOnlySpan<byte> utf8Text, IFormatProvider? provider)
-     => Parse(utf8Text, provider);
+        => Parse(utf8Text, provider);
 
     static bool INumberBase<Dual>.TryConvertFromChecked<TOther>(TOther value, out Dual result)
     {

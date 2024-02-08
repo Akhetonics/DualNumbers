@@ -18,10 +18,7 @@ public readonly partial struct Dual : INumber<Dual>
         return Complex.Abs(c);
     }
 
-    public static bool IsCanonical(Dual value)
-    {
-        throw new NotSupportedException();
-    }
+    public static bool IsCanonical(Dual value) => throw new NotSupportedException();
 
     public static bool IsComplexNumber(Dual value)
     {
@@ -113,10 +110,7 @@ public readonly partial struct Dual : INumber<Dual>
         return Complex.IsSubnormal(tmp);
     }
 
-    public static bool IsZero(Dual value)
-    {
-        return value == Zero;
-    }
+    public static bool IsZero(Dual value) => value == Zero;
 
     public static Dual MaxMagnitude(Dual x, Dual y)
     {
@@ -126,10 +120,7 @@ public readonly partial struct Dual : INumber<Dual>
         return new(tmp.Real, tmp.Imaginary);
     }
 
-    public static Dual MaxMagnitudeNumber(Dual x, Dual y)
-    {
-        throw new NotSupportedException();
-    }
+    public static Dual MaxMagnitudeNumber(Dual x, Dual y) => throw new NotSupportedException();
 
     public static Dual MinMagnitude(Dual x, Dual y)
     {
@@ -139,10 +130,7 @@ public readonly partial struct Dual : INumber<Dual>
         return new(tmp.Real, tmp.Imaginary);
     }
 
-    public static Dual MinMagnitudeNumber(Dual x, Dual y)
-    {
-        throw new NotSupportedException();
-    }
+    public static Dual MinMagnitudeNumber(Dual x, Dual y) => throw new NotSupportedException();
 
     public static Dual Parse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider)
     {
@@ -170,38 +158,23 @@ public readonly partial struct Dual : INumber<Dual>
         return tmp;
     }
 
-    public int CompareTo(object? obj)
-    {
-        throw new NotSupportedException();
-    }
+    public int CompareTo(object? obj) => throw new NotSupportedException();
 
-    public int CompareTo(Dual other)
-    {
-        throw new NotSupportedException();
-    }
+    public int CompareTo(Dual other) => throw new NotSupportedException();
 
     public static Dual operator %(Dual left, Dual right)
-    {
-        throw new NotSupportedException("Modular operator is not well defined in this number space.");
-    }
+        => throw new NotSupportedException("Modular operator is not well defined in this number space.");
+    
 
     public static bool operator <(Dual left, Dual right)
-    {
-        throw new NotSupportedException("Smaller-Than operator is not well defined in this number space.");
-    }
+        => throw new NotSupportedException("Smaller-Than operator is not well defined in this number space.");
 
     public static bool operator >(Dual left, Dual right)
-    {
-        throw new NotSupportedException("Greater-Than operator is not well defined in this number space.");
-    }
+        => throw new NotSupportedException("Greater-Than operator is not well defined in this number space.");
 
     public static bool operator <=(Dual left, Dual right)
-    {
-        throw new NotSupportedException("Smaller-Or-Equal-To operator is not well defined in this number space.");
-    }
+        => throw new NotSupportedException("Smaller-Or-Equal-To operator is not well defined in this number space.");
 
     public static bool operator >=(Dual left, Dual right)
-    {
-        throw new NotSupportedException("Greater-OrEqual-To operator is not well defined in this number space.");
-    }
+        => throw new NotSupportedException("Greater-OrEqual-To operator is not well defined in this number space.");
 }

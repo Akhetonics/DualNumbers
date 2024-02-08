@@ -8,10 +8,7 @@ namespace DualNumbers;
 public readonly partial struct Dual : ISpanParsable<Dual>
 {
     public static Dual Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
-    {
-        Complex tmp = Complex.Parse(s, provider);
-        return new(tmp.Real, tmp.Imaginary);
-    }
+        => Helper.ToDual(Complex.Parse(s, provider));
 
     public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out Dual result)
     {

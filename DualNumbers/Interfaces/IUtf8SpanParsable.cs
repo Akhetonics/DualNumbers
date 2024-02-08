@@ -9,8 +9,7 @@ public readonly partial struct Dual : IUtf8SpanParsable<Dual>
     public static Dual Parse(ReadOnlySpan<byte> utf8Text, IFormatProvider? provider)
     {
         Span<Char> s = Helper.ConvertFromUtf8Bytes(utf8Text);
-        Complex tmp = Complex.Parse(s, provider);
-        return new(tmp.Real, tmp.Imaginary);
+        return Helper.ToDual(Complex.Parse(s, provider));
     }
 
     public static bool TryParse(ReadOnlySpan<byte> utf8Text, IFormatProvider? provider, [MaybeNullWhen(false)] out Dual result)
