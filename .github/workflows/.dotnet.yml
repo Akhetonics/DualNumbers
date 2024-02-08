@@ -28,7 +28,8 @@ jobs:
       run: dotnet restore DualNumbers.Test/DualNumbers.Test.csproj
     
     - name: Test DualNumbers.Test
-      run: dotnet test DualNumbers.Test/DualNumbers.Test.csproj --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./TestResults/Coverage/
+      run: dotnet test DualNumbers.Test/DualNumbers.Test.csproj --no-build --verbosity normal
+
     
     - name: Coveralls
       uses: coverallsapp/github-action@master
