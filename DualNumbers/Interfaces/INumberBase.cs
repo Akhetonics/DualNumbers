@@ -73,33 +73,252 @@ public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
 
     static bool INumberBase<Dual>.TryConvertFromChecked<TOther>(TOther value, out Dual result)
     {
-        throw new NotImplementedException();
+        result = default(Dual);
+        var type = typeof(TOther);
+        if (typeof(TOther) == typeof(double))
+        {
+            double doubleValue = Convert.ToDouble(value);
+            result = new(doubleValue, 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(float))
+        {
+            float intValue = Convert.ToSingle(value);
+            result = new(intValue, 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(int))
+        {
+            int intValue = Convert.ToInt32(value);
+            result = new(intValue, 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(Complex))
+        {
+            Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+            result = new(complexValue.Real, complexValue.Imaginary);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     static bool INumberBase<Dual>.TryConvertFromSaturating<TOther>(TOther value, out Dual result)
     {
-        throw new NotImplementedException();
+        result = default(Dual);
+        try
+        {
+            if (typeof(TOther) == typeof(double))
+            {
+                double doubleValue = Convert.ToDouble(value);
+                result = new(doubleValue, 0);
+                return true;
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                float floatValue = Convert.ToSingle(value);
+                result = new(floatValue, 0);
+                return true;
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                int intValue = Convert.ToInt32(value);
+                result = new(intValue, 0);
+                return true;
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+                result = new(Saturate(complexValue.Real), Saturate(complexValue.Imaginary));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (OverflowException)
+        {
+            result = new Dual(double.MaxValue, double.MaxValue);
+            return true;
+        }
+    }
+
+    private static double Saturate(double value)
+    {
+        if (value > double.MaxValue) return double.MaxValue;
+        if (value < double.MinValue) return double.MinValue;
+        return value;
     }
 
     static bool INumberBase<Dual>.TryConvertFromTruncating<TOther>(TOther value, out Dual result)
     {
-        throw new NotImplementedException();
+        result = default(Dual);
+        if (typeof(TOther) == typeof(double))
+        {
+            double doubleValue = Convert.ToDouble(value);
+            result = new(Truncate(doubleValue), 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(float))
+        {
+            float floatValue = Convert.ToSingle(value);
+            result = new(Truncate(floatValue), 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(int))
+        {
+            int intValue = Convert.ToInt32(value);
+            result = new(intValue, 0);
+            return true;
+        }
+        else if (typeof(TOther) == typeof(Complex))
+        {
+            Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+            result = new(Truncate(complexValue.Real), Truncate(complexValue.Imaginary));
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private static double Truncate(double value)
+    {
+        return Math.Truncate(value);
     }
 
     static bool INumberBase<Dual>.TryConvertToChecked<TOther>(Dual value, out TOther result)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // Conversion to single property TOther will use magnitude
+            if (typeof(TOther) == typeof(double))
+            {
+                double convertedValue = Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                float convertedValue = (float)Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                int convertedValue = (int)Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex convertedValue = new Complex(value.real, value.dual);
+                result = (TOther)(object)convertedValue; // No direct casting to Complex
+                return true;
+            }
+            else
+            {
+                result = default!;
+                return false;
+            }
+        }
+        catch
+        {
+            result = default!;
+            return false;
+        }
     }
 
     static bool INumberBase<Dual>.TryConvertToSaturating<TOther>(Dual value, out TOther result)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // Conversion to single property TOther will use magnitude
+            if (typeof(TOther) == typeof(double))
+            {
+                double convertedValue = Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                float convertedValue = (float)Math.Min(Math.Sqrt(value.real * value.real + value.dual * value.dual), float.MaxValue);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                double magnitude = Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                int convertedValue = magnitude > int.MaxValue ? int.MaxValue : (int)magnitude;
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex convertedValue = new Complex(value.real, value.dual);
+                result = (TOther)(object)convertedValue; // No direct casting to Complex
+                return true;
+            }
+            else
+            {
+                result = default!;
+                return false;
+            }
+        }
+        catch
+        {
+            result = default!;
+            return false;
+        }
     }
 
     static bool INumberBase<Dual>.TryConvertToTruncating<TOther>(Dual value, out TOther result)
     {
-        throw new NotImplementedException();
+        try
+        {
+            // Conversion to single property TOther will use magnitude
+            if (typeof(TOther) == typeof(double))
+            {
+                double convertedValue = Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                float convertedValue = (float)Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                double magnitude = Math.Sqrt(value.real * value.real + value.dual * value.dual);
+                int convertedValue = (int)magnitude;
+                result = (TOther)Convert.ChangeType(convertedValue, typeof(TOther));
+                return true;
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex convertedValue = new Complex(value.real, value.dual);
+                result = (TOther)(object)convertedValue; // No direct casting to Complex
+                return true;
+            }
+            else
+            {
+                result = default!;
+                return false;
+            }
+        }
+        catch
+        {
+            result = default!;
+            return false;
+        }
     }
+    
 
     static bool INumberBase<Dual>.TryParse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider, out Dual result)
         => TryParse(s, style, provider, out result);

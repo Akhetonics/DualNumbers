@@ -25,13 +25,106 @@ public readonly partial struct Dual
     public static Dual Cosh(Dual value) => new(Math.Cosh(value.real), value.dual * Math.Sinh(value.real));
 
     public static Dual CreateChecked<TOther>(TOther value) where TOther : INumberBase<TOther>
-         => throw new NotImplementedException();
+    {
+        if (typeof(TOther) == typeof(double))
+        {
+            double doubleValue = Convert.ToDouble(value);
+            return new(doubleValue, 0);
+        }
+        else if (typeof(TOther) == typeof(float))
+        {
+            float floatValue = Convert.ToSingle(value);
+            return new(floatValue, 0);
+        }
+        else if (typeof(TOther) == typeof(int))
+        {
+            int intValue = Convert.ToInt32(value);
+            return new(intValue, 0);
+        }
+        else if (typeof(TOther) == typeof(Complex))
+        {
+            Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+            return new(complexValue.Real, complexValue.Imaginary);
+        }
+        else
+        {
+            throw new NotSupportedException($"Conversion from {typeof(TOther).Name} to Dual is not supported.");
+        }
+    }
     
     public static Dual CreateSaturating<TOther>(TOther value) where TOther : INumberBase<TOther>
-         => throw new NotImplementedException();
+    {
+         try
+        {
+            if (typeof(TOther) == typeof(double))
+            {
+                double doubleValue = Math.Min(Math.Max(Convert.ToDouble(value), double.MinValue), double.MaxValue);
+                return new(doubleValue, 0);
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                float floatValue = Math.Min(Math.Max(Convert.ToSingle(value), float.MinValue), float.MaxValue);
+                return new(floatValue, 0);
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                int intValue = Convert.ToInt32(value);
+                return new(intValue, 0);
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+                double realPart = Math.Min(Math.Max(complexValue.Real, double.MinValue), double.MaxValue);
+                double imaginaryPart = Math.Min(Math.Max(complexValue.Imaginary, double.MinValue), double.MaxValue);
+                return new(realPart, imaginaryPart);
+            }
+            else
+            {
+                throw new NotSupportedException($"Conversion from {typeof(TOther).Name} to Dual is not supported.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to create a saturating Dual from {typeof(TOther).Name}", ex);
+        }
+    }
 
     public static Dual CreateTruncating<TOther>(TOther value) where TOther : INumberBase<TOther>
-         => throw new NotImplementedException();
+    {
+        try
+        {
+            if (typeof(TOther) == typeof(double))
+            {
+                int intValue = (int)Convert.ToDouble(value);
+                return new Dual(intValue, 0);
+            }
+            else if (typeof(TOther) == typeof(float))
+            {
+                int intValue = (int)Convert.ToSingle(value);
+                return new Dual(intValue, 0);
+            }
+            else if (typeof(TOther) == typeof(int))
+            {
+                int intValue = Convert.ToInt32(value);
+                return new Dual(intValue, 0);
+            }
+            else if (typeof(TOther) == typeof(Complex))
+            {
+                Complex complexValue = (Complex)(object)value; // No direct casting to Complex
+                int realPart = (int)complexValue.Real;
+                int imaginaryPart = (int)complexValue.Imaginary;
+                return new Dual(realPart, imaginaryPart);
+            }
+            else
+            {
+                throw new NotSupportedException($"Conversion from {typeof(TOther).Name} to Dual is not supported.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Failed to create a truncating Dual from {typeof(TOther).Name}", ex);
+        }
+    }
 
     public static Dual Divide(Dual left, Dual right) => left / right;
     public static Dual Divide(Dual left, Double right) => left / right;
