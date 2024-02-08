@@ -6,17 +6,16 @@ namespace DualNumbers;
 
 public readonly partial struct Dual : INumber<Dual>
 {
-    public static int Radix => throw new NotImplementedException();
+    public static int Radix => 2;
 
-    static Dual INumberBase<Dual>.One => throw new NotImplementedException();
+    static Dual INumberBase<Dual>.One => One;
 
-    static Dual INumberBase<Dual>.Zero => throw new NotImplementedException();
+    static Dual INumberBase<Dual>.Zero => Zero;
 
     public static double Abs(Dual value)
     {
         Complex c = new(value.real, value.dual);
         return Complex.Abs(c);
-        //return new(c.Real, c.Imaginary);
     }
 
     public static bool IsCanonical(Dual value)
@@ -173,12 +172,12 @@ public readonly partial struct Dual : INumber<Dual>
 
     public int CompareTo(object? obj)
     {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
     }
 
     public int CompareTo(Dual other)
     {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
     }
 
     public static Dual operator %(Dual left, Dual right)
