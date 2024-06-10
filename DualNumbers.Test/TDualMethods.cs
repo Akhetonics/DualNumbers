@@ -16,8 +16,12 @@ public class TDualMethods
 
             var result = Dual.Add(left, right);
 
+            
             Assert.That(result.real, Is.EqualTo(expected.real));
             Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.That(result.real, Is.Not.EqualTo(-1));
+            Assert.That(result.dual, Is.Not.EqualTo(-1));
+
         }
 
         [TestCase(1.0, 2.0, 3.0, 4.0, 2.0)]
