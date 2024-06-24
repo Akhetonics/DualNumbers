@@ -108,16 +108,25 @@ namespace DualNumbers.Test
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-            [TestCase(0, 2, 0, 4)]
-            public void DivisionByZero(double leftReal, double leftDual, double rightReal, double rightDual)
+            //alle anderen Testcases aufschreiben
+            // 
+            [TestCase(0, 2, 0, 4, double.NaN, double.NaN)]
+            [TestCase(2, 0, 4, 0,0.5,0)]
+            [TestCase(0, 0, 0, 0,double.NaN, double.NaN)]
+            [TestCase(1, 0, 0, 0,double.PositiveInfinity,double.NaN)]
+            [TestCase(0, 1, 0, 0, double.NaN, double.NaN)]
+
+            public void DivisionByZero(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
 
                 var left = new Dual(leftReal, leftDual);
                 var right = new Dual(rightReal, rightDual);
                 var result = left / right;
+                var expected = new Dual(expectedReal, expectedDual);        
 
-                Assert.That(result.real, Is.NaN);
-                Assert.That(result.dual, Is.NaN);
+           
+            Assert.That(result.real, Is.EqualTo(expected.real));
+            Assert.That(result.dual, Is.EqualTo(expected.dual));
 
             }
 
@@ -330,9 +339,23 @@ namespace DualNumbers.Test
             //double.PositiveInfinity / 0 = double.PositiveInfinity
             //double.NegativeInfinity / 0 = double.NegativeInfinity
 
+            RealTeil = a/c
+            DualTeil = (b*c - a*d) / (c*c)
+
             */
-            [TestCase(double.PositiveInfinity, 1.0, 0.0, 1.0, /*double.PositiveInfinity*/double.PositiveInfinity, double.PositiveInfinity)]
-            [TestCase(double.NegativeInfinity, 1.0, 0.0, 1.0, double.NegativeInfinity, double.NaN)]
+            [TestCase(double.PositiveInfinity, 1, 1, 1,double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(double.NegativeInfinity, 1, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
+            
+            /*[TestCase(double.PositiveInfinity, 1, 1, 1, double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(double.NegativeInfinity, 1, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
+
+            [TestCase(2,double.PositiveInfinity, 1, 1, double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(2,double.NegativeInfinity, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
+
+            [TestCase(2,2,double.PositiveInfinity, 1, double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(2,2,double.NegativeInfinity, 1, double.NegativeInfinity, double.PositiveInfinity)]
+            [TestCase(2,2,2,double.PositiveInfinity,double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(2,2,2,double.NegativeInfinity, double.NegativeInfinity, double.PositiveInfinity)]*/
             public void DivisionWithInfinity(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 var left = new Dual(leftReal, leftDual);
@@ -411,17 +434,25 @@ namespace DualNumbers.Test
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
 
-            //Fälle testen, die 0 / 0 sind
-            [Test]
-            [TestCase(0, 0, -0.0, 0, double.NegativeInfinity, 0)]
-            [TestCase(0, -0.0, 0, 0, double.NegativeInfinity, 0)]
-            [TestCase(-0.0, 0, 0, 0, -0.0, 0)]
-            [TestCase(0, 0, 0, -0.0, 0, 0)]
+            //RealTeil = a/c
+            //DualTeil = (b * c - a * d) / (c * c)
+
+            //reguläre Fälle != 0 v 1
+            //Fälle, die 0 / 0 sind
+            //mehrere NegativeZeros
+            //mit Infinities
+            [TestCase(0, 2, 0, 4, double.NaN, double.NaN)]
+            [TestCase(2, 0, 4, 0, 0.5, 0)]
+            [TestCase(0, 0, 0, 0, double.NaN, double.NaN)]
+            [TestCase(1, 0, 0, 0, double.PositiveInfinity, double.NaN)]
+            [TestCase(0, 1, 0, 0, double.NaN, double.NaN)]
             public void DivisionWithNegativeZero(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 var left = new Dual(leftReal, leftDual);
                 var right = new Dual(rightReal, rightDual);
                 var expected = new Dual(expectedReal, expectedDual);
+
+                Console.WriteLine(double.NegativeZero == 0.0);
 
                 var result = left / right;
 
