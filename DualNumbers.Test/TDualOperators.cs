@@ -545,6 +545,7 @@ namespace DualNumbers.Test
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
             */
+            
             //DivisionOverflow - 
             [TestCase(double.MinValue, double.MinValue, double.MaxValue, double.MaxValue, -1, double.NaN)]
             [TestCase(double.MaxValue, double.PositiveInfinity, double.MinValue, double.MaxValue, -1, double.NaN)]
@@ -563,7 +564,7 @@ namespace DualNumbers.Test
                 Assert.That(result.real, Is.EqualTo(expected.real));
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
-
+            
 
 
 
