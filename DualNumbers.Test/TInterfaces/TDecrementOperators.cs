@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 
 
-namespace DualNumbers.Test.TInterfaces
+namespace DualNumbers.Test
 {
     [TestFixture]
     public class DualDecrementOperatorsTests

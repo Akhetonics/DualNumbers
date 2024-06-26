@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Numerics;
 
-namespace DualNumbers.Test.TInterfaces
+namespace DualNumbers.Test
 {
     [TestFixture]
     public class TDualInterfacesTests

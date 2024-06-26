@@ -7,7 +7,7 @@ using DualNumbers;
 
 
 
-namespace DualNumbers.Test.TInterfaces
+namespace DualNumbers.Test
 {
    
         [TestFixture]
