@@ -18,9 +18,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -34,9 +37,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -50,9 +56,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -66,9 +75,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -82,9 +94,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -95,9 +110,12 @@ namespace DualNumbers.Test
             var b = new Dual(4.0, 5.0);
             var result = a * b;
 
-            // Assert
-            Assert.That(double.IsNaN(result.real));
-            Assert.That(result.dual, Is.EqualTo(double.NaN));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(double.IsNaN(result.real));
+                Assert.That(result.dual, Is.EqualTo(double.NaN));
+            });
         }
 
         [Test]
@@ -112,9 +130,12 @@ namespace DualNumbers.Test
             // Act
             var result = a * b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expectedReal));
-            Assert.That(result.dual, Is.EqualTo(expectedDual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expectedReal));
+                Assert.That(result.dual, Is.EqualTo(expectedDual));
+            });
         }
 
         [Test]
@@ -128,9 +149,12 @@ namespace DualNumbers.Test
             // Act
             var result = DualNumbers.Dual.Multiply(a, b);
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
 

@@ -44,8 +44,11 @@ namespace DualNumbers.Test
             var dual1 = new Dual(3.0, 4.0);
             var dual2 = new Dual(1.0, -2.0);
             var result = Dual.MaxMagnitude(dual1, dual2);
-            Assert.That(result.real, Is.EqualTo(3.0));
-            Assert.That(result.dual, Is.EqualTo(4.0));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.real, Is.EqualTo(3.0));
+                Assert.That(result.dual, Is.EqualTo(4.0));
+            });
         }
 
       
@@ -57,8 +60,11 @@ namespace DualNumbers.Test
         {
             var s = "invalid";
             var success = Dual.TryParse(s, NumberStyles.Any, cultureInfo, out var result);
-            Assert.That(success, Is.False);
-            Assert.That(result, Is.EqualTo(default(Dual)));
+            Assert.Multiple(() =>
+            {
+                Assert.That(success, Is.False);
+                Assert.That(result, Is.EqualTo(default(Dual)));
+            });
         }
 
         [Test]

@@ -17,9 +17,12 @@ namespace DualNumbers.Test
             // Act
            var result = a / b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(2.0));
-            Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(2.0));
+                Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            });
         }
 
         [Test]
@@ -33,9 +36,12 @@ namespace DualNumbers.Test
             // Act
             var result = a / b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(-2.0));
-            Assert.That(result.dual, Is.EqualTo(-4.0 / 3.0));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(-2.0));
+                Assert.That(result.dual, Is.EqualTo(-4.0 / 3.0));
+            });
         }
 
         [Test]
@@ -49,9 +55,12 @@ namespace DualNumbers.Test
             // Act
             var result = a / b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(2.0));
-            Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(2.0));
+                Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            });
         }
 
         [Test]
@@ -64,10 +73,13 @@ namespace DualNumbers.Test
 
             // Act
             var result = a / b;
-            // Assert mit Lambda und Wegwerf-Variable "_"
-            // Assert.Throws<DivideByZeroException>(() => _ = a / b);
-            Assert.That(result.real, Is.EqualTo(double.PositiveInfinity));
-            Assert.That(result.dual, Is.EqualTo(double.NegativeInfinity));
+            Assert.Multiple(() =>
+            {
+                // Assert mit Lambda und Wegwerf-Variable "_"
+                // Assert.Throws<DivideByZeroException>(() => _ = a / b);
+                Assert.That(result.real, Is.EqualTo(double.PositiveInfinity));
+                Assert.That(result.dual, Is.EqualTo(double.NegativeInfinity));
+            });
         }
 
         [Test]
@@ -80,9 +92,12 @@ namespace DualNumbers.Test
             // Act
             var result = a / b;
 
-            // Assert
-            Assert.That(double.IsNaN(result.real));
-            Assert.That(result.dual, Is.EqualTo(double.NaN));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(double.IsNaN(result.real));
+                Assert.That(result.dual, Is.EqualTo(double.NaN));
+            });
         }
 
         [Test]
@@ -95,9 +110,12 @@ namespace DualNumbers.Test
             // Act
             var result = a / b;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(double.PositiveInfinity));
-            Assert.That(result.dual, Is.EqualTo(double.NegativeInfinity));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(double.PositiveInfinity));
+                Assert.That(result.dual, Is.EqualTo(double.NegativeInfinity));
+            });
         }
 
         [Test]
@@ -110,9 +128,12 @@ namespace DualNumbers.Test
             // Act
             var result = Divide(a, b);
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(2.0));
-            Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(2.0));
+                Assert.That(result.dual, Is.EqualTo(4.0 / 3.0));
+            });
         }
 
         private T Divide<T>(T a, T b) where T : System.Numerics.IDivisionOperators<T, T, T>

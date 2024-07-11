@@ -28,8 +28,11 @@
             {
                 var a = new Dual(aReal, aDual);
                 var result = a + b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
             [TestCase(3, 2, 3, 5, 3)]
@@ -52,9 +55,12 @@
             {
                 var b = new Dual(bReal, bDual);
                 var result = a + b;
-                //Console.WriteLine(bReal+bDual == );
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    //Console.WriteLine(bReal+bDual == );
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
             // DivisionWithNaN
@@ -75,8 +81,11 @@
             {
                 var a = new Dual(aReal, aDual);
                 var result = a / b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
 
@@ -93,8 +102,11 @@
             {
                 var b = new Dual(bReal, bDual);
                 var result = a / b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
 
@@ -106,8 +118,11 @@
             {
                 var a = new Dual(aReal, aDual);
                 var result = a * b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
             [TestCase(4, 2, 2, 8, 8)]
@@ -116,8 +131,11 @@
             {
                 var b = new Dual(bReal, bDual);
                 var result = a * b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
             // Subtraction operator tests
@@ -127,8 +145,11 @@
             {
                 var a = new Dual(aReal, aDual);
                 var result = a - b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
 
             [TestCase(4, 2, 2, 2, -2)]
@@ -137,8 +158,11 @@
             {
                 var b = new Dual(bReal, bDual);
                 var result = a - b;
-                Assert.That(result.real, Is.EqualTo(expectedReal));
-                Assert.That(result.dual, Is.EqualTo(expectedDual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expectedReal));
+                    Assert.That(result.dual, Is.EqualTo(expectedDual));
+                });
             }
         }
     }

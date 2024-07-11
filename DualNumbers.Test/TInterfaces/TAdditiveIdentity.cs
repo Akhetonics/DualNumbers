@@ -19,9 +19,12 @@ namespace DualNumbers.Test
             // Act
             var identity = Dual.AdditiveIdentity;
 
-            // Assert
-            Assert.That(identity.real, Is.EqualTo(zero.real));
-            Assert.That(identity.dual, Is.EqualTo(zero.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(identity.real, Is.EqualTo(zero.real));
+                Assert.That(identity.dual, Is.EqualTo(zero.dual));
+            });
         }
 
         [Test]
@@ -35,11 +38,14 @@ namespace DualNumbers.Test
             var result1 = a + identity;
             var result2 = identity + a;
 
-            // Assert
-            Assert.That(result1.real, Is.EqualTo(a.real));
-            Assert.That(result1.dual, Is.EqualTo(a.dual));
-            Assert.That(result2.real, Is.EqualTo(a.real));
-            Assert.That(result2.dual, Is.EqualTo(a.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result1.real, Is.EqualTo(a.real));
+                Assert.That(result1.dual, Is.EqualTo(a.dual));
+                Assert.That(result2.real, Is.EqualTo(a.real));
+                Assert.That(result2.dual, Is.EqualTo(a.dual));
+            });
         }
 
         [Test]
@@ -51,9 +57,12 @@ namespace DualNumbers.Test
             // Act
             var result = AddWithIdentity(a);
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(a.real));
-            Assert.That(result.dual, Is.EqualTo(a.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(a.real));
+                Assert.That(result.dual, Is.EqualTo(a.dual));
+            });
         }
 
         private T AddWithIdentity<T>(T a) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>

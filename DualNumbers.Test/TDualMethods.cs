@@ -17,10 +17,13 @@ public class TDualMethods
 
             var result = DualNumbers.Dual.Add(left, right);
 
+            Assert.Multiple(() =>
+            {
 
-            //Standard testcases
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+                //Standard testcases
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
             Assert.That(result.real, Is.Not.EqualTo(-1));
             Assert.That(result.dual, Is.Not.EqualTo(-1));
 
@@ -37,8 +40,11 @@ public class TDualMethods
 
             var result = Dual.Add(left, right);
 
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [TestCase(3.0, 1.0, 2.0, 4.0, 2.0)]
@@ -51,8 +57,11 @@ public class TDualMethods
 
             var result = Dual.Add(left, right);
 
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
     }
 }

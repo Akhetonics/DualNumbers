@@ -21,9 +21,12 @@ public class DualMultiplicativeIdentityTests
         // Act
         var result = Dual.MultiplicativeIdentity;
 
-        // Assert
-        Assert.That(result.real, Is.EqualTo(expected.real));
-        Assert.That(result.dual, Is.EqualTo(expected.dual));
+        Assert.Multiple(() =>
+        {
+            // Assert
+            Assert.That(result.real, Is.EqualTo(expected.real));
+            Assert.That(result.dual, Is.EqualTo(expected.dual));
+        });
     }
 
     [Test]
@@ -37,9 +40,12 @@ public class DualMultiplicativeIdentityTests
         // Act
         var result = a * identity;
 
-        // Assert
-        Assert.That(result.real, Is.EqualTo(expected.real));
-        Assert.That(result.dual, Is.EqualTo(expected.dual));
+        Assert.Multiple(() =>
+        {
+            // Assert
+            Assert.That(result.real, Is.EqualTo(expected.real));
+            Assert.That(result.dual, Is.EqualTo(expected.dual));
+        });
     }
 
     [Test]
@@ -53,9 +59,12 @@ public class DualMultiplicativeIdentityTests
         // Act
         var result = identity * a;
 
-        // Assert
-        Assert.That(result.real, Is.EqualTo(expected.real));
-        Assert.That(result.dual, Is.EqualTo(expected.dual));
+        Assert.Multiple(() =>
+        {
+            // Assert
+            Assert.That(result.real, Is.EqualTo(expected.real));
+            Assert.That(result.dual, Is.EqualTo(expected.dual));
+        });
     }
 }
 

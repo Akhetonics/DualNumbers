@@ -14,9 +14,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -29,9 +32,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -44,9 +50,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -59,9 +68,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -74,9 +86,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
 
         [Test]
@@ -89,9 +104,12 @@
             // Act
             var result = ++a;
 
-            // Assert
-            Assert.That(double.IsNaN(result.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(double.IsNaN(result.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
+            });
         }
     }
 }

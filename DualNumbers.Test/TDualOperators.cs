@@ -20,8 +20,11 @@
 
                 var result = left + right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
                 Assert.That(result.real, Is.Not.EqualTo(-1));
                 Assert.That(result.dual, Is.Not.EqualTo(-1));
                 Assert.That(result, Is.EqualTo(expected));
@@ -41,8 +44,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
                 Assert.That(result.real, Is.Not.EqualTo(-1));
                 Assert.That(result.dual, Is.Not.EqualTo(-1));
                 Assert.That(result, Is.EqualTo(expected));
@@ -65,8 +71,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
                 Assert.That(result.real, Is.Not.EqualTo(-1));
                 Assert.That(result.dual, Is.Not.EqualTo(-1));
                 Assert.That(result, Is.EqualTo(expected));
@@ -94,8 +103,11 @@
 
                 var result = left / right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
                 Assert.That(result.real, Is.Not.EqualTo(-1));
                 Assert.That(result.dual, Is.Not.EqualTo(-1));
                 Assert.That(result, Is.EqualTo(expected));
@@ -117,9 +129,11 @@
                 var result = left / right;
                 var expected = new Dual(expectedReal, expectedDual);
 
-
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
 
             }
 
@@ -179,8 +193,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.NaN);
-                Assert.That(result.dual, Is.NaN);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.NaN);
+                    Assert.That(result.dual, Is.NaN);
+                });
             }
 
             [TestCase(double.NaN, 0, 0, double.NaN, double.NaN, double.NaN)]
@@ -195,8 +212,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.NaN);
-                Assert.That(result.dual, Is.NaN);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.NaN);
+                    Assert.That(result.dual, Is.NaN);
+                });
             }
 
             [TestCase(double.NaN, 0, 0, 0, double.NaN, double.NaN)]
@@ -211,8 +231,11 @@
 
                 var result = left / right;
 
-                Assert.That(result.real, Is.NaN);
-                Assert.That(result.dual, Is.NaN);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.NaN);
+                    Assert.That(result.dual, Is.NaN);
+                });
             }
 
             /* 
@@ -263,8 +286,11 @@
 
                 var result = left + right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             /*
@@ -288,8 +314,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -320,8 +349,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -357,8 +389,11 @@
 
                 var result = left / right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -389,8 +424,11 @@
 
                 var result = left + right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             [Test]
@@ -406,8 +444,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             [Test]
@@ -423,8 +464,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             //RealTeil = a/c
@@ -449,8 +493,11 @@
 
                 var result = left / right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -482,9 +529,11 @@
 
                 var result = left + right;
 
-
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -498,8 +547,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             //overflow bei dual und real  und  bei beidem
@@ -514,8 +566,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             /*
@@ -554,8 +609,11 @@
                 Console.WriteLine((2 / double.PositiveInfinity));
                 Console.WriteLine((2 * double.MaxValue / double.PositiveInfinity));
                 Console.WriteLine(double.PositiveInfinity / 100);
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
 
@@ -572,8 +630,11 @@
 
                 var result = left - right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             //realteil:(a*c)  dualteil: (a*d)+(b*c)
@@ -587,8 +648,11 @@
 
                 var result = left * right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
             [TestCase(-double.MaxValue, 1.0, -double.MaxValue, 1.0, -double.PositiveInfinity, 2.0)]
@@ -601,8 +665,11 @@
 
                 var result = left + right;
 
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
+                Assert.Multiple(() =>
+                {
+                    Assert.That(result.real, Is.EqualTo(expected.real));
+                    Assert.That(result.dual, Is.EqualTo(expected.dual));
+                });
             }
 
         }

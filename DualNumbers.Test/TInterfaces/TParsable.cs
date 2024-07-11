@@ -14,8 +14,11 @@ namespace DualNumbers.Test
         {
             string input = "invalid";
             bool success = Dual.TryParse(input, cultureInfo, out var result);
-            Assert.That(success, Is.False);
-            Assert.That(result, Is.EqualTo(default(Dual)));
+            Assert.Multiple(() =>
+            {
+                Assert.That(success, Is.False);
+                Assert.That(result, Is.EqualTo(default(Dual)));
+            });
         }
     }
 }
