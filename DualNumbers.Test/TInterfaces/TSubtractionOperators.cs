@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework.Legacy;
 
-namespace DualNumbers.Tests
+namespace DualNumbers.Test
 {
     public class DualTests
     {

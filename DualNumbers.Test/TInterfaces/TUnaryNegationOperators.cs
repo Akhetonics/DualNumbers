@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework.Legacy;
 
-namespace DualNumbers.Test.TInterfaces
+namespace DualNumbers.Test
 {
     public class DualUnaryNegationOperatorTests
     {
