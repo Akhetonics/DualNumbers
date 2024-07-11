@@ -48,7 +48,7 @@ namespace DualNumbers.Test
             Assert.That(result.dual, Is.EqualTo(4.0));
         }
 
-
+      
 
 
 

@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;*/
 using System.Numerics;
+using DualNumbers;
 
 
 
@@ -17,7 +18,7 @@ namespace DualNumbers.Test
         public void DecrementOperator_DecrementsRealPartByOne()
         {
             // Arrange
-            var a = new Dual(5.0, 3.0);
+            var a = new DualNumbers.Dual(5.0, 3.0);
 
             // Act
             var result = --a;
@@ -31,7 +32,7 @@ namespace DualNumbers.Test
         public void DecrementOperator_DecrementsNegativeRealPartByOne()
         {
             // Arrange
-            var a = new Dual(-2.0, 3.0);
+            var a = new DualNumbers.Dual(-2.0, 3.0);
 
             // Act
             var result = --a;
@@ -45,7 +46,7 @@ namespace DualNumbers.Test
         public void DecrementOperator_DecrementsZeroRealPartToNegativeOne()
         {
             // Arrange
-            var a = new Dual(0.0, 3.0);
+            var a = new DualNumbers.Dual(0.0, 3.0);
 
             // Act
             var result = --a;
@@ -59,7 +60,7 @@ namespace DualNumbers.Test
         public void DecrementOperator_DoesNotChangeDualPart()
         {
             // Arrange
-            var a = new Dual(5.0, 3.0);
+            var a = new DualNumbers.Dual(5.0, 3.0);
 
             // Act
             var result = --a;
@@ -72,7 +73,7 @@ namespace DualNumbers.Test
         public void DecrementOperator_UsingGenerics_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new Dual(5.0, 3.0);
+            var a = new DualNumbers.Dual(5.0, 3.0);
 
             // Act
             var result = Decrement(a);

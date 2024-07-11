@@ -1,4 +1,6 @@
-﻿namespace DualNumbers.Test
+﻿using System.Numerics;
+using DualNumbers;
+namespace DualNumbers.Test
 {
 
 
@@ -9,9 +11,9 @@
         public void Multiply_TwoPositiveDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new DualNumbers.Dual(2.0, 3.0);
-            var b = new DualNumbers.Dual(4.0, 5.0);
-            var expected = new DualNumbers.Dual(8.0, 22.0);
+            var a = new Dual (2.0, 3.0);
+            var b = new Dual(4.0, 5.0);
+            var expected = new Dual (8.0, 22.0);
 
             // Act
             var result = a * b;
@@ -25,9 +27,9 @@
         public void Multiply_PositiveAndNegativeDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new DualNumbers.Dual(2.0, 3.0);
+            var a = new Dual (2.0, 3.0);
             var b = new DualNumbers.Dual(-4.0, -5.0);
-            var expected = new Dual(-8.0, -22.0);
+            var expected = new Dual (-8.0, -22.0);
 
             // Act
             var result = a * b;
@@ -41,8 +43,8 @@
         public void Multiply_TwoNegativeDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new DualNumbers.Dual(-2.0, -3.0);
-            var b = new DualNumbers.Dual(-4.0, -5.0);
+            var a = new Dual(-2.0, -3.0);
+            var b = new Dual(-4.0, -5.0);
             var expected = new Dual(8.0, 22.0);
 
             // Act
@@ -57,8 +59,8 @@
         public void Multiply_WithZero_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new DualNumbers.Dual(2.0, 3.0);
-            var b = new DualNumbers.Dual(0.0, 0.0);
+            var a = new Dual(2.0, 3.0);
+            var b = new Dual(0.0, 0.0);
             var expected = new Dual(0.0, 0.0);
 
             // Act
@@ -73,8 +75,8 @@
         public void Multiply_LargeAndSmallNumbers_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new DualNumbers.Dual(1e10, 1e-10);
-            var b = new DualNumbers.Dual(1e-10, 1e10);
+            var a = new Dual(1e10, 1e-10);
+            var b = new Dual(1e-10, 1e10);
             var expected = new Dual(1, 1e20);
 
             // Act
@@ -89,8 +91,8 @@
         public void Multiply_WithNaN_ReturnsNaN()
         {
             // Arrange
-            var a = new DualNumbers.Dual(double.NaN, 3.0);
-            var b = new DualNumbers.Dual(4.0, 5.0);
+            var a = new Dual(double.NaN, 3.0);
+            var b = new Dual(4.0, 5.0);
             var result = a * b;
 
             // Assert
@@ -102,8 +104,8 @@
         public void Multiply_WithInfinity_ReturnsInfinity()
         {
             // Arrange
-            var a = new DualNumbers.Dual(double.PositiveInfinity, 3.0);
-            var b = new DualNumbers.Dual(4.0, 5.0);
+            var a = new Dual(double.PositiveInfinity, 3.0);
+            var b = new Dual(4.0, 5.0);
             var expectedReal = double.PositiveInfinity;
             var expectedDual = double.PositiveInfinity;
 

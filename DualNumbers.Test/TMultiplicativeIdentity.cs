@@ -60,10 +60,6 @@ public class DualMultiplicativeIdentityTests
 }
 
 // Dual struct with multiplication operator implementation
-public readonly partial struct Dual
-{
-    public static Dual operator *(Dual a, Dual b)
-        => new Dual(a.real * b.real, a.real * b.dual + a.dual * b.real);
-}
+
 
 

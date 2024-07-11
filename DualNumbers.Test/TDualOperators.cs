@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-
-namespace DualNumbers.Test
+﻿namespace DualNumbers.Test
 {
 
     public class TDualOperators
@@ -111,9 +104,9 @@ namespace DualNumbers.Test
             //alle anderen Testcases aufschreiben
             // 
             [TestCase(0, 2, 0, 4, double.NaN, double.NaN)]
-            [TestCase(2, 0, 4, 0,0.5,0)]
-            [TestCase(0, 0, 0, 0,double.NaN, double.NaN)]
-            [TestCase(1, 0, 0, 0,double.PositiveInfinity,double.NaN)]
+            [TestCase(2, 0, 4, 0, 0.5, 0)]
+            [TestCase(0, 0, 0, 0, double.NaN, double.NaN)]
+            [TestCase(1, 0, 0, 0, double.PositiveInfinity, double.NaN)]
             [TestCase(0, 1, 0, 0, double.NaN, double.NaN)]
 
             public void DivisionByZero(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -122,11 +115,11 @@ namespace DualNumbers.Test
                 var left = new Dual(leftReal, leftDual);
                 var right = new Dual(rightReal, rightDual);
                 var result = left / right;
-                var expected = new Dual(expectedReal, expectedDual);        
+                var expected = new Dual(expectedReal, expectedDual);
 
-           
-            Assert.That(result.real, Is.EqualTo(expected.real));
-            Assert.That(result.dual, Is.EqualTo(expected.dual));
+
+                Assert.That(result.real, Is.EqualTo(expected.real));
+                Assert.That(result.dual, Is.EqualTo(expected.dual));
 
             }
 
@@ -176,7 +169,7 @@ namespace DualNumbers.Test
 
             }
 
-            [TestCase(double.NaN, 0,0, double.NaN, double.NaN, double.NaN)]
+            [TestCase(double.NaN, 0, 0, double.NaN, double.NaN, double.NaN)]
 
             public void SubtractionWithNaN(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
@@ -283,10 +276,10 @@ namespace DualNumbers.Test
 
             */
 
-           
+
             [TestCase(double.PositiveInfinity, double.NegativeInfinity, 0, 0, double.PositiveInfinity, double.NegativeInfinity)]
-            
-            
+
+
             public void SubstractionWithInfinity(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 var left = new Dual(leftReal, leftDual);
@@ -310,9 +303,9 @@ namespace DualNumbers.Test
             */
 
             [TestCase(double.PositiveInfinity, double.PositiveInfinity, 0, 0, double.NaN, double.NaN)]
-            [TestCase(1, double.PositiveInfinity, double.PositiveInfinity, 1, double.PositiveInfinity,double.PositiveInfinity)]
+            [TestCase(1, double.PositiveInfinity, double.PositiveInfinity, 1, double.PositiveInfinity, double.PositiveInfinity)]
             [TestCase(double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity)]
-            [TestCase(double.NaN, double.NaN,  double.PositiveInfinity, double.PositiveInfinity, double.NaN, double.NaN)]
+            [TestCase(double.NaN, double.NaN, double.PositiveInfinity, double.PositiveInfinity, double.NaN, double.NaN)]
 
             [TestCase(double.NegativeInfinity, double.NegativeInfinity, 0, 0, double.NaN, double.NaN)]
             [TestCase(1, double.NegativeInfinity, double.NegativeInfinity, 1, double.NegativeInfinity, double.PositiveInfinity)]
@@ -343,9 +336,9 @@ namespace DualNumbers.Test
             DualTeil = (b*c - a*d) / (c*c)
 
             */
-            [TestCase(double.PositiveInfinity, 1, 1, 1,double.PositiveInfinity, double.NegativeInfinity)]
+            [TestCase(double.PositiveInfinity, 1, 1, 1, double.PositiveInfinity, double.NegativeInfinity)]
             [TestCase(double.NegativeInfinity, 1, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
-            
+
             /*[TestCase(double.PositiveInfinity, 1, 1, 1, double.PositiveInfinity, double.NegativeInfinity)]
             [TestCase(double.NegativeInfinity, 1, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
 
@@ -480,7 +473,7 @@ namespace DualNumbers.Test
 
             //falscher testcase, fehler wegen zu kleiner Zahl (Implementierung von double das: Console.Write(double.MaxValue + (double.MaxValue / 2)); funktioniert)
             [TestCase(double.MaxValue, double.MaxValue, double.MaxValue, double.MaxValue, double.PositiveInfinity, double.PositiveInfinity)]
-            [TestCase(-double.MaxValue, -double.MaxValue,-double.MaxValue, -double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
+            [TestCase(-double.MaxValue, -double.MaxValue, -double.MaxValue, -double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             public void AdditionOverflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 var left = new Dual(leftReal, leftDual);
@@ -494,7 +487,7 @@ namespace DualNumbers.Test
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
 
-            
+
             [TestCase(double.NegativeInfinity, double.NegativeInfinity, double.PositiveInfinity, double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             [TestCase(double.MaxValue, 1.0, double.MaxValue, 1.0, 0.0, 0.0)]
             public void SubtractionOverflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -545,7 +538,7 @@ namespace DualNumbers.Test
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
             */
-            
+
             //DivisionOverflow - 
             [TestCase(double.MinValue, double.MinValue, double.MaxValue, double.MaxValue, -1, double.NaN)]
             [TestCase(double.MaxValue, double.PositiveInfinity, double.MinValue, double.MaxValue, -1, double.NaN)]
@@ -564,7 +557,7 @@ namespace DualNumbers.Test
                 Assert.That(result.real, Is.EqualTo(expected.real));
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             }
-            
+
 
 
 
@@ -585,7 +578,7 @@ namespace DualNumbers.Test
 
             //realteil:(a*c)  dualteil: (a*d)+(b*c)
             [TestCase(double.MinValue, 1, 10000, 1.0, double.NegativeInfinity, double.MinValue)]
-            [TestCase(-double.MaxValue, 1, double.MaxValue,double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
+            [TestCase(-double.MaxValue, 1, double.MaxValue, double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             public void MultiplicationUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 var left = new Dual(leftReal, leftDual);

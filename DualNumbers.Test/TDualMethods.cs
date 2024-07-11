@@ -1,5 +1,6 @@
 namespace DualNumbers.Test;
 
+
 public class TDualMethods
 {
     [TestFixture]
@@ -10,19 +11,19 @@ public class TDualMethods
         [TestCase(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)]
         public void Add_TwoDuals_ReturnsCorrectDual(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
         {
-            var left = new Dual(leftReal, leftDual);
-            var right = new Dual(rightReal, rightDual);
-            var expected = new Dual(expectedReal, expectedDual);
+            var left = new DualNumbers.Dual(leftReal, leftDual);
+            var right = new DualNumbers.Dual(rightReal, rightDual);
+            var expected = new DualNumbers.Dual(expectedReal, expectedDual);
 
-            var result = Dual.Add(left, right);
+            var result = DualNumbers.Dual.Add(left, right);
 
-            
-           //Standard testcases
+
+            //Standard testcases
             Assert.That(result.real, Is.EqualTo(expected.real));
             Assert.That(result.dual, Is.EqualTo(expected.dual));
             Assert.That(result.real, Is.Not.EqualTo(-1));
             Assert.That(result.dual, Is.Not.EqualTo(-1));
-            
+
 
         }
 

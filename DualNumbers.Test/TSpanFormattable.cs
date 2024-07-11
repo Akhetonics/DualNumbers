@@ -7,7 +7,7 @@ namespace DualNumbers.Test
     public class DualSpanFormattableTests
     {
 
-
+   
 
     }
 }

@@ -10,8 +10,8 @@ namespace DualNumbers.Test
         public void Division_TwoPositiveDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new Dual(6.0, 8.0);
-            var b = new Dual(3.0,2.0);
+            var a = new DualNumbers.Dual(6.0, 8.0);
+            var b = new DualNumbers.Dual(3.0,2.0);
             
 
             // Act
@@ -27,8 +27,8 @@ namespace DualNumbers.Test
         public void Division_PositiveAndNegativeDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new Dual(6.0, 8.0);
-            var b = new Dual(-3.0, -2.0);
+            var a = new DualNumbers.Dual(6.0, 8.0);
+            var b = new DualNumbers.Dual(-3.0, -2.0);
 
             // Act
             var result = a / b;
@@ -43,8 +43,8 @@ namespace DualNumbers.Test
         public void Division_TwoNegativeDuals_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new Dual(-6.0, -8.0);
-            var b = new Dual(-3.0, -2.0);
+            var a = new DualNumbers.Dual(-6.0, -8.0);
+            var b = new DualNumbers.Dual(-3.0, -2.0);
 
             // Act
             var result = a / b;
@@ -59,8 +59,8 @@ namespace DualNumbers.Test
         public void Division_WithZeroRealPart_ThrowsDivideByZeroException_Or_ComplexInfinity()
         {
             // Arrange
-            var a = new Dual(6.0, 8.0);
-            var b = new Dual(0.0, 2.0);
+            var a = new DualNumbers.Dual(6.0, 8.0);
+            var b = new DualNumbers.Dual(0.0, 2.0);
 
             // Act
             var result = a / b;
@@ -74,8 +74,8 @@ namespace DualNumbers.Test
         public void Division_WithNaN_ReturnsNaN()
         {
             // Arrange
-            var a = new Dual(double.NaN, 8.0);
-            var b = new Dual(3.0, 2.0);
+            var a = new DualNumbers.Dual(double.NaN, 8.0);
+            var b = new DualNumbers.Dual(3.0, 2.0);
 
             // Act
             var result = a / b;
@@ -89,8 +89,8 @@ namespace DualNumbers.Test
         public void Division_WithInfinity_ReturnsInfinity()
         {
             // Arrange
-            var a = new Dual(double.PositiveInfinity, 8.0);
-            var b = new Dual(3.0, 2.0);
+            var a = new DualNumbers.Dual(double.PositiveInfinity, 8.0);
+            var b = new DualNumbers.Dual(3.0, 2.0);
 
             // Act
             var result = a / b;
@@ -104,8 +104,8 @@ namespace DualNumbers.Test
         public void Division_UsingGenerics_ReturnsCorrectResult()
         {
             // Arrange
-            var a = new Dual(6.0, 8.0);
-            var b = new Dual(3.0, 2.0);
+            var a = new DualNumbers.Dual(6.0, 8.0);
+            var b = new DualNumbers.Dual(3.0, 2.0);
 
             // Act
             var result = Divide(a, b);

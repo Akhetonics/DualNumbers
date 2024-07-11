@@ -28,8 +28,8 @@ namespace DualNumbers.Test
         public void Addition_WithAdditiveIdentity_DoesNotChangeValue()
         {
             // Arrange
-            var a = new Dual(3.0, 4.0);
-            var identity = Dual.AdditiveIdentity;
+            var a = new DualNumbers.Dual(3.0, 4.0);
+            var identity = DualNumbers. Dual.AdditiveIdentity;
 
             // Act
             var result1 = a + identity;

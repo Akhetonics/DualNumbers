@@ -14,7 +14,7 @@ namespace DualNumbers.Test
         [Test]
         public void Radix_ReturnsCorrectValue()
         {
-            Assert.That(Dual.Radix, expression: Is.EqualTo(2));
+            Assert.That(Dual.Radix, expression: Is.EqualTo(2));   
         }
 
         [Test]
