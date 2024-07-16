@@ -6,6 +6,7 @@
         [TestFixture]
         public class TDualOperatorsTest
         {
+            [Test]
             [TestCase(1.0, 2.0, 3.0, 4.0, 4.0, 6.0)]
             [TestCase(5.0, 6.0, 10.0, 42.0, 15.0, 48.0)]
 
@@ -30,7 +31,7 @@
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-
+            [Test]
             [TestCase(8.0, 8.0, 4.0, 4.0, 4.0, 4.0)]
             [TestCase(5.0, 6.0, 7.0, 42.0, -2.0, -36.0)]
             public void Substraction(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -54,7 +55,7 @@
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-
+            [Test]
             [TestCase(3, 1, 5, 1, 15, 8)]
             [TestCase(3, 0, 5, 0, 15, 0)]
             public void Multiplication(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -81,10 +82,11 @@
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-
+            [Test]
             [TestCase(3, 1, 5, 1, 0.6, 0.08)]
             [TestCase(3, 0, 5, 0, 0.6, 0)]
             [TestCase(6, 2, 3, 4, 2, -2)]
+            [TestCase(double.MinValue,0, double.MinValue, 1, 1, 0)]
             public void Division(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
             {
                 // (a + bi) / (c + di) = 
@@ -113,8 +115,8 @@
                 Assert.That(result, Is.EqualTo(expected));
             }
 
-            //alle anderen Testcases aufschreiben
-            // 
+            
+            [Test]
             [TestCase(0, 2, 0, 4, double.NaN, double.NaN)]
             [TestCase(2, 0, 4, 0, 0.5, 0)]
             [TestCase(0, 0, 0, 0, double.NaN, double.NaN)]
@@ -152,6 +154,7 @@
             //Entsteht durch undefinierte Operationen wie 0.0/0.0 oder sqrt(-1.0). Jede Operation mit NaN als Operand ergibt NaN (Spezialfall für Dualzahlen mit double)
             //Test failed hier, entweder falsch getestet oder Fehler in der Implementierung (evtl. weil +-* mit NaN nicht als default NaN implementiert ist?) 
 
+            [Test]
             [TestCase(double.NaN, 0, 0, 0, double.NaN, 0)]
             [TestCase(0, double.NaN, 0, 0, 0, double.NaN)]
             [TestCase(0, 0, double.NaN, 0, double.NaN, 0)]
@@ -183,6 +186,7 @@
 
             }
 
+            [Test]
             [TestCase(double.NaN, 0, 0, double.NaN, double.NaN, double.NaN)]
 
             public void SubtractionWithNaN(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -199,7 +203,7 @@
                     Assert.That(result.dual, Is.NaN);
                 });
             }
-
+            [Test]
             [TestCase(double.NaN, 0, 0, double.NaN, double.NaN, double.NaN)]
             [TestCase(0, double.NaN, double.NaN, 0, double.NaN, double.NaN)]
             [TestCase(0, 0, double.NaN, double.NaN, double.NaN, double.NaN)]
@@ -218,7 +222,7 @@
                     Assert.That(result.dual, Is.NaN);
                 });
             }
-
+            [Test]
             [TestCase(double.NaN, 0, 0, 0, double.NaN, double.NaN)]
             [TestCase(0, double.NaN, 0, 0, double.NaN, double.NaN)]
             [TestCase(0, 0, double.NaN, 0, double.NaN, double.NaN)]
@@ -273,7 +277,7 @@
             //double.NegativeInfinity + 0 = double.NegativeInfinity
 
             */
-
+            [Test]
             [TestCase(double.PositiveInfinity, 1, 0, 0, double.PositiveInfinity, 1)]
             [TestCase(1, double.PositiveInfinity, 0, 0, 1, double.PositiveInfinity)]
             [TestCase(1, 0, double.PositiveInfinity, 0, double.PositiveInfinity, 0)]
@@ -302,7 +306,7 @@
 
             */
 
-
+            [Test]
             [TestCase(double.PositiveInfinity, double.NegativeInfinity, 0, 0, double.PositiveInfinity, double.NegativeInfinity)]
 
 
@@ -330,7 +334,7 @@
             double.NegativeInfinity* 0 = double.NaN
 
             */
-
+            [Test]
             [TestCase(double.PositiveInfinity, double.PositiveInfinity, 0, 0, double.NaN, double.NaN)]
             [TestCase(1, double.PositiveInfinity, double.PositiveInfinity, 1, double.PositiveInfinity, double.PositiveInfinity)]
             [TestCase(double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity, double.PositiveInfinity)]
@@ -368,6 +372,7 @@
             DualTeil = (b*c - a*d) / (c*c)
 
             */
+            [Test]
             [TestCase(double.PositiveInfinity, 1, 1, 1, double.PositiveInfinity, double.NegativeInfinity)]
             [TestCase(double.NegativeInfinity, 1, 1, 1, double.NegativeInfinity, double.PositiveInfinity)]
 
@@ -411,7 +416,7 @@
             -0.0 / 0 = double.NegativeInfinity
 
             */
-
+            [Test]
             [TestCase(0, 0, -0.0, 0, 0.0, 0)]
             [TestCase(0, -0.0, 0, 0, 0.0, 0)]
             [TestCase(-0.0, 0, 0, 0, 0.0, 0)]
@@ -478,6 +483,7 @@
             //Fälle, die 0 / 0 sind
             //mehrere NegativeZeros
             //mit Infinities
+            [Test]
             [TestCase(0, 2, 0, 4, double.NaN, double.NaN)]
             [TestCase(2, 0, 4, 0, 0.5, 0)]
             [TestCase(0, 0, 0, 0, double.NaN, double.NaN)]
@@ -489,8 +495,7 @@
                 var right = new Dual(rightReal, rightDual);
                 var expected = new Dual(expectedReal, expectedDual);
 
-                Console.WriteLine(double.NegativeZero == 0.0);
-
+                
                 var result = left / right;
 
                 Assert.Multiple(() =>
@@ -519,6 +524,7 @@
 
 
             //falscher testcase, fehler wegen zu kleiner Zahl (Implementierung von double das: Console.Write(double.MaxValue + (double.MaxValue / 2)); funktioniert)
+            [Test]
             [TestCase(double.MaxValue, double.MaxValue, double.MaxValue, double.MaxValue, double.PositiveInfinity, double.PositiveInfinity)]
             [TestCase(-double.MaxValue, -double.MaxValue, -double.MaxValue, -double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             public void AdditionOverflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -536,7 +542,7 @@
                 });
             }
 
-
+            [Test]
             [TestCase(double.NegativeInfinity, double.NegativeInfinity, double.PositiveInfinity, double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             [TestCase(double.MaxValue, 1.0, double.MaxValue, 1.0, 0.0, 0.0)]
             public void SubtractionOverflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -555,6 +561,7 @@
             }
 
             //overflow bei dual und real  und  bei beidem
+            [Test]
             [TestCase(double.MaxValue, 1.0, 2.0, 10, double.PositiveInfinity, double.PositiveInfinity)]
             [TestCase(double.MaxValue, 0, 2.0, 0, double.PositiveInfinity, 0)]
             [TestCase(-double.MaxValue, 1.0, 2.0, 1.0, double.NegativeInfinity, -double.MaxValue)]
@@ -573,28 +580,9 @@
                 });
             }
 
-            /*
-            //Realteil: a/c DualteiL: (b*c - a*d) / (c*c)
-            [TestCase(double.MinValue, double.MinValue, double.MaxValue, double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
-            [TestCase(double.MaxValue, double.PositiveInfinity, double.MinValue, double.MaxValue, double.NegativeInfinity, double.PositiveInfinity)]
-            public void DivisionUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
-            {
-                var left = new Dual(leftReal, leftDual);
-                var right = new Dual(rightReal, rightDual);
-                var expected = new Dual(expectedReal, expectedDual);
-
-                var result = left / right;
-                Console.WriteLine((2 * double.MaxValue) / (double.MaxValue * double.MaxValue));
-                Console.WriteLine((-double.MaxValue * -double.MaxValue));
-                Console.WriteLine((2 / double.PositiveInfinity));
-                Console.WriteLine((2 * double.MaxValue / double.PositiveInfinity));
-                Console.WriteLine(double.PositiveInfinity / 100);
-                Assert.That(result.real, Is.EqualTo(expected.real));
-                Assert.That(result.dual, Is.EqualTo(expected.dual));
-            }
-            */
 
             //DivisionOverflow - 
+            [Test]
             [TestCase(double.MinValue, double.MinValue, double.MaxValue, double.MaxValue, -1, double.NaN)]
             [TestCase(double.MaxValue, double.PositiveInfinity, double.MinValue, double.MaxValue, -1, double.NaN)]
             public void DivisionUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -604,11 +592,7 @@
                 var expected = new Dual(expectedReal, expectedDual);
 
                 var result = left / right;
-                Console.WriteLine((2 * double.MaxValue) / (double.MaxValue * double.MaxValue));
-                Console.WriteLine((-double.MaxValue * -double.MaxValue));
-                Console.WriteLine((2 / double.PositiveInfinity));
-                Console.WriteLine((2 * double.MaxValue / double.PositiveInfinity));
-                Console.WriteLine(double.PositiveInfinity / 100);
+
                 Assert.Multiple(() =>
                 {
                     Assert.That(result.real, Is.EqualTo(expected.real));
@@ -619,7 +603,7 @@
 
 
 
-
+            [Test]
             [TestCase(double.MinValue, 1.0, double.MaxValue, 1.0, double.NegativeInfinity, 0.0)]
             [TestCase(-double.MaxValue, 1.0, double.MaxValue, 1.0, double.NegativeInfinity, 0.0)]
             public void SubtractionUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -638,6 +622,7 @@
             }
 
             //realteil:(a*c)  dualteil: (a*d)+(b*c)
+            [Test]
             [TestCase(double.MinValue, 1, 10000, 1.0, double.NegativeInfinity, double.MinValue)]
             [TestCase(-double.MaxValue, 1, double.MaxValue, double.MaxValue, double.NegativeInfinity, double.NegativeInfinity)]
             public void MultiplicationUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)
@@ -654,7 +639,7 @@
                     Assert.That(result.dual, Is.EqualTo(expected.dual));
                 });
             }
-
+            [Test]
             [TestCase(-double.MaxValue, 1.0, -double.MaxValue, 1.0, -double.PositiveInfinity, 2.0)]
             [TestCase(double.MinValue, 1.0, double.MinValue, 1.0, double.NegativeInfinity, 2.0)]
             public void AdditionUnderflow(double leftReal, double leftDual, double rightReal, double rightDual, double expectedReal, double expectedDual)

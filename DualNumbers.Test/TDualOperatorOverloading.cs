@@ -5,7 +5,7 @@
         [TestFixture]
         public class TDualOperatorsTest
         {
-
+            [Test]
             // Plus operator tests
             //Dual operator +(Dual a, Double b) => new(a.real + b, a.dual);
             //aReal//aDual//bDouble//expectedANewDual//expectedADual
@@ -34,7 +34,7 @@
                     Assert.That(result.dual, Is.EqualTo(expectedDual));
                 });
             }
-
+            [Test]
             [TestCase(3, 2, 3, 5, 3)]
             [TestCase(2, 3, double.NaN, 5, double.NaN)]
             [TestCase(3, double.NaN, 5, double.NaN, 5)]
@@ -57,12 +57,13 @@
                 var result = a + b;
                 Assert.Multiple(() =>
                 {
-                    //Console.WriteLine(bReal+bDual == );
+                    
                     Assert.That(result.real, Is.EqualTo(expectedReal));
                     Assert.That(result.dual, Is.EqualTo(expectedDual));
                 });
             }
 
+            [Test]
             // DivisionWithNaN
             [TestCase(double.NaN, 2, 2, double.NaN, 1)]
             [TestCase(4, double.NaN, 2, 2, double.NaN)]
@@ -88,16 +89,18 @@
                 });
             }
 
-
+            [Test]
 
             [TestCase(double.NaN, 3.0, 3, double.NaN, double.NaN)]
-            [TestCase(9, double.NaN, 3, double.NaN, -27)]
-            [TestCase(1e-308, 1e-308, 1, 1, -1e-308)]
-            [TestCase(4, 0, 0, double.PositiveInfinity, -0)]
-            [TestCase(4, -0, 0, double.PositiveInfinity, 0)]
+            [TestCase(9, double.NaN, 3, double.NaN, double.NaN)]
+            [TestCase(double.MinValue, double.MinValue, 1, 1, 0)]
+            [TestCase(4, 0, 0, double.PositiveInfinity, double.NaN)]
+            [TestCase(4, -0, 0, double.PositiveInfinity, double.NaN)]
             [TestCase(4, 1, 0, 4, 0)]
-            [TestCase(6, 3, 3, 2, -18)]
-            [TestCase(10, 2, 5, 5, -50)]
+            [TestCase(6, 3, 3, 2, -2)]
+            [TestCase(10, 2, 5, 5, -12.5)]
+
+
             public void Division_DoubleAndDual(double a, double bReal, double bDual, double expectedReal, double expectedDual)
             {
                 var b = new Dual(bReal, bDual);
@@ -109,8 +112,7 @@
                 });
             }
 
-
-
+            [Test]
             // Multiply operator tests
             [TestCase(4, 2, 2, 8, 4)]
             [TestCase(3, 3, 3, 9, 9)]
@@ -124,7 +126,7 @@
                     Assert.That(result.dual, Is.EqualTo(expectedDual));
                 });
             }
-
+            [Test]
             [TestCase(4, 2, 2, 8, 8)]
             [TestCase(3, 3, 3, 9, 9)]
             public void Multiplication_DoubleAndDual(double a, double bReal, double bDual, double expectedReal, double expectedDual)
@@ -137,7 +139,7 @@
                     Assert.That(result.dual, Is.EqualTo(expectedDual));
                 });
             }
-
+            [Test]
             // Subtraction operator tests
             [TestCase(4, 2, 2, 2, 2)]
             [TestCase(3, 3, 1, 2, 3)]
@@ -151,7 +153,7 @@
                     Assert.That(result.dual, Is.EqualTo(expectedDual));
                 });
             }
-
+            [Test]
             [TestCase(4, 2, 2, 2, -2)]
             [TestCase(3, 3.0, 1, 0, -1)]
             public void Subtraction_DoubleAndDual(double a, double bReal, double bDual, double expectedReal, double expectedDual)

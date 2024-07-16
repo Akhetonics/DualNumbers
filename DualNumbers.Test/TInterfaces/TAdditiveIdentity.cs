@@ -64,8 +64,8 @@ namespace DualNumbers.Test
                 Assert.That(result.dual, Is.EqualTo(a.dual));
             });
         }
-
-        private T AddWithIdentity<T>(T a) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
+        
+        public T AddWithIdentity<T>(T a) where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>
         {
             return a + T.AdditiveIdentity;
         }

@@ -8,7 +8,6 @@ namespace DualNumbers.Test
     {
 
 
-
         [Test]
         public void TryParse_WithInvalidInput_ReturnsFalseAndDefaultDual()
         {

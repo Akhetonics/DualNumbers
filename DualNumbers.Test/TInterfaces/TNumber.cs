@@ -51,9 +51,6 @@ namespace DualNumbers.Test
             });
         }
 
-      
-
-
 
         [Test]
         public void TryParse_InvalidString_ReturnsFalseAndDefaultDual()

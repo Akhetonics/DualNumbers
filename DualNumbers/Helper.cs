@@ -14,7 +14,9 @@ public  static class Helper
         return new Span<char>(chars);
     }
 
-    internal static Dual ToDual(Complex value) => new(value.Real, value.Imaginary);
+
+    //internal static Dual ToDual(Complex value) => new(value.Real, value.Imaginary);
+    public static Dual ToDual(Complex value) => new(value.Real, value.Imaginary);
     //internal static Complex ToComplex(Dual value) => new(value.real, value.dual);
     public static Complex ToComplex(Dual value) => new(value.real, value.dual);
 }

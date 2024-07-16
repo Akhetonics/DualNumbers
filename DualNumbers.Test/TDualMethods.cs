@@ -37,7 +37,7 @@ public class TDualMethods : Attribute
 
 
         }
-
+        [Test]
         [TestCase(1.0, 2.0, 3.0, 4.0, 2.0)]
         [TestCase(-1.0, 2.5, 3.5, 2.5, 2.5)]
         [TestCase(0.0, 0.0, 1.0, 1.0, 0.0)]
@@ -54,7 +54,7 @@ public class TDualMethods : Attribute
                 Assert.That(result.dual, Is.EqualTo(expected.dual));
             });
         }
-
+        [Test]
         [TestCase(3.0, 1.0, 2.0, 4.0, 2.0)]
         [TestCase(3.5, -1.0, 2.5, 2.5, 2.5)]
         [TestCase(1.0, 0.0, 0.0, 1.0, 0.0)]
@@ -330,7 +330,7 @@ public class TDualMethods : Attribute
             double expectedReal = double.MaxValue;
             double expectedImaginary = -2.0;
             Dual expectedDual = new DualNumbers.Dual(expectedReal, expectedImaginary);
-            Console.WriteLine(expectedReal);
+
 
             // Act
             Dual result = Dual.CreateSaturating<Complex>(inputValue);
@@ -443,9 +443,6 @@ public class TDualMethods : Attribute
             var left = new Dual(6.0, 2.0);
             double right = 2.0;
             var expected = new Dual(3, left.dual/right);
-            Console.WriteLine(left.dual);
-            Console.WriteLine(expected.dual);
-            Console.WriteLine(left.dual / right);
 
             // Act
             var result = Dual.Divide(left,right);
@@ -463,9 +460,9 @@ public class TDualMethods : Attribute
             // Arrange
             double left = 6.0;
             var right = new Dual(3.0, 1.0);
-            var expected = new Dual(2, -6 / 3 * 3);
+            var expected = new Dual(2.0, -(6.0 * 1.0) / (3.0 * 3.0));
 
-            Console.WriteLine(expected.dual);
+
             // Act
             var result = Dual.Divide(left, right);
             //6/4- 6*
@@ -490,7 +487,7 @@ public class TDualMethods : Attribute
             Assert.That(result.dual, Is.EqualTo(expected.dual).Within(1e-9));
         }
 
-        /* [Test]
+        [Test]
          public void TestFromPolarCoordinates()
          {
              // Arrange
@@ -505,7 +502,7 @@ public class TDualMethods : Attribute
              // Assert
              Assert.That(result.real, Is.EqualTo(expected.real).Within(1e-9));
              Assert.That(result.dual, Is.EqualTo(expected.dual).Within(1e-9));
-         }*/
+         }
 
         [Test]
         public void TestLog()

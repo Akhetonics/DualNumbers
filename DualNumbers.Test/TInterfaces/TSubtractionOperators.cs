@@ -15,8 +15,10 @@ namespace DualNumbers.Test
             Dual result = dual1 - dual2;
 
             // Assert
-             ClassicAssert.AreEqual(2.0, result.real, 1e-6); // Check real part
-            ClassicAssert.AreEqual(1.0, result.dual, 1e-6); // Check dual part
+            Assert.That(result.real, Is.EqualTo(2.0).Within(1e-6));
+            Assert.That(result.dual, Is.EqualTo(1.0).Within(1e-6));
+
+
         }
 
         [Test]
@@ -29,8 +31,9 @@ namespace DualNumbers.Test
             Dual result = dual - dual;
 
             // Assert
-            ClassicAssert.AreEqual(0.0, result.real, 1e-6); // Check real part
-            ClassicAssert.AreEqual(0.0, result.dual, 1e-6); // Check dual part
+            Assert.That(result.real, Is.EqualTo(0).Within(1e-6));
+            Assert.That(result.dual, Is.EqualTo(0).Within(1e-6));
+
         }
 
         [Test]
@@ -44,8 +47,9 @@ namespace DualNumbers.Test
             Dual result = dual - zero;
 
             // Assert
-            ClassicAssert.AreEqual(3.0, result.real, 1e-6); // Check real part
-            ClassicAssert.AreEqual(1.0, result.dual, 1e-6); // Check dual part
+            Assert.That(result.real, Is.EqualTo(3).Within(1e-6));
+            Assert.That(result.dual, Is.EqualTo(1).Within(1e-6));
+           
         }
 
         [Test]
@@ -59,8 +63,9 @@ namespace DualNumbers.Test
             Dual result = zero - dual;
 
             // Assert
-            ClassicAssert.AreEqual(-3.0, result.real, 1e-6); // Check real part
-            ClassicAssert.AreEqual(-1.0, result.dual, 1e-6); // Check dual part
+            Assert.That(result.real, Is.EqualTo(-3).Within(1e-6));
+            Assert.That(result.dual, Is.EqualTo(-1).Within(1e-6));
+           
         }
     }
 }

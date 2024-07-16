@@ -19,12 +19,12 @@ public readonly partial struct Dual
      
      */
 
-
-    //public static Dual operator /(Dual a, Double b) => new(a.real / b, a.dual * b);
     public static Dual operator /(Dual a, Double b) => new(a.real / b, a.dual / b);
 
-    public static Dual operator /(Double a, Dual b) => new(a / b.real, -a * b.dual);
+    public static Dual operator /(Double a, Dual b) => new(a / b.real, (-a * b.dual)/(b.real*b.real));
     //public static Dual operator /(Double a, Dual b) => new(a / b.real, -a * b.dual / (b.real * b.real));
+    //(bc-ad)/c*c
+    //-ad/c*c
 
 
     // Multiply operator

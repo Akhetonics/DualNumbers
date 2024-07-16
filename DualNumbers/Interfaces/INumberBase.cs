@@ -4,7 +4,8 @@ using System.Numerics;
 
 namespace DualNumbers;
 
-public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
+//public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
+public partial struct Dual : System.Numerics.INumberBase<Dual>
 {
     static int INumberBase<Dual>.Radix => Radix;
 
@@ -71,7 +72,7 @@ public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
     static Dual IUtf8SpanParsable<Dual>.Parse(ReadOnlySpan<byte> utf8Text, IFormatProvider? provider)
         => Parse(utf8Text, provider);
 
-    static bool INumberBase<Dual>.TryConvertFromChecked<TOther>(TOther value, out Dual result)
+    static  bool INumberBase<Dual>.TryConvertFromChecked<TOther>(TOther value, out Dual result)
     {
         result = default(Dual);
         var type = typeof(TOther);

@@ -7,7 +7,7 @@ namespace DualNumbers.Test
     [TestFixture]
     public class DualFormattableTests
     {
-        /* [Test]
+        [Test]
         public void ToString_WithNullFormatAndProvider_ReturnsDefaultString()
          {
              // Arrange
@@ -21,8 +21,8 @@ namespace DualNumbers.Test
              // Assert
              Assert.That(result, Is.EqualTo(expected));
          }
-        */
-        /*
+        
+        
          [Test]
          public void ToString_WithFormat_ReturnsFormattedString()
          {
@@ -36,7 +36,7 @@ namespace DualNumbers.Test
 
              // Assert
              Assert.That(result, Is.EqualTo(expected));
-         }*/
+         }
 
 
         [Test]
@@ -56,7 +56,7 @@ namespace DualNumbers.Test
             Assert.That(result, Is.EqualTo(expected));
         }
 
-        /* [Test]
+         [Test]
          public void ToString_WithFormatAndFormatProvider_ReturnsFormattedString()
          {
              // Arrange
@@ -72,7 +72,7 @@ namespace DualNumbers.Test
 
              // Assert
              Assert.That(result, Is.EqualTo(expected));
-         }*/
+         }
 
         [Test]
         public void ToString_WithInvalidFormat()

@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-//using System.Numerics;
+using System.Numerics;
 using DualNumbers;
 
 
@@ -39,11 +39,11 @@ namespace DualNumbers.Test
             Assert.That(result, Is.EqualTo(5.0));
         }
 
-      /*  [Test]
+        [Test]
         public void TryConvertFromChecked_ConvertsCorrectly()
         {
             double doubleValue = 3.5;
-            bool success = Dual.TryConvertFromChecked<Dual>(doubleValue, out var result);
+            bool success = INumberBase<Dual>.TryConvertFromChecked<Dual>(doubleValue, out var result);
             Assert.That(success, Is.True);
             Assert.That(result.real, Is.EqualTo(3.5));
             Assert.That(result.dual, Is.EqualTo(0.0));
@@ -54,7 +54,7 @@ namespace DualNumbers.Test
         public void TryConvertFromSaturating_ConvertsCorrectly()
         {
             double doubleValue = double.MaxValue;
-            bool success = Dual.TryConvertFromSaturating(doubleValue, out var result);
+            bool success = INumberBase<Dual>.TryConvertFromSaturating(doubleValue, out var result);
             Assert.That(success, Is.True);
             Assert.That(result.real, Is.EqualTo(double.MaxValue));
             Assert.That(result.dual, Is.EqualTo(double.MaxValue));
@@ -73,7 +73,7 @@ namespace DualNumbers.Test
         [Test]
         public void TryConvertToChecked_ConvertsCorrectly()
         {
-            var dual = new Dual(3.0, 4.0);
+            Dual dual = new Dual(3.0, 4.0);
             bool success = INumberBase<Dual>.TryConvertToChecked(dual, out double result);
             Assert.That(success, Is.True);
             Assert.That(result, Is.EqualTo(5.0).Within(1e-6));
@@ -95,7 +95,7 @@ namespace DualNumbers.Test
             bool success = INumberBase<Dual>.TryConvertToTruncating(dual, out int result);
             Assert.That(success, Is.True);
             Assert.That(result, Is.EqualTo(3));
-        }*/
+        }
 
         [Test]
         public void UnsupportedOperators_ThrowNotSupportedException()
