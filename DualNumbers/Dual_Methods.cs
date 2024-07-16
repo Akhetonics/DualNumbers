@@ -74,10 +74,14 @@ public readonly partial struct Dual
             else if (typeof(TOther) == typeof(Complex))
             {
                 Complex complexValue = (Complex)(object)value; // No direct casting to Complex
-                double realPart = Math.Min(Math.Max(complexValue.Real, double.MinValue), double.MaxValue);
-                double imaginaryPart = Math.Min(Math.Max(complexValue.Imaginary, double.MinValue), double.MaxValue);
-                return new(realPart, imaginaryPart);
-            }
+                 double realPart = Math.Min(Math.Max(complexValue.Real, double.MinValue), double.MaxValue);
+                 double imaginaryPart = Math.Min(Math.Max(complexValue.Imaginary, double.MinValue), double.MaxValue);
+                 return new(realPart, imaginaryPart);
+
+              
+                }
+
+            
             else
             {
                 throw new NotSupportedException($"Conversion from {typeof(TOther).Name} to Dual is not supported.");
@@ -129,6 +133,7 @@ public readonly partial struct Dual
     public static Dual Divide(Dual left, Dual right) => left / right;
     public static Dual Divide(Dual left, Double right) => left / right;
     public static Dual Divide(Double left, Dual right) => left / right;
+    
 
     public static Dual Exp(Dual value) => new(Math.Exp(value.real), value.dual * Math.Exp(value.real));
 

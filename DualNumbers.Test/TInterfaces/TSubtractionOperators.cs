@@ -2,7 +2,7 @@
 
 namespace DualNumbers.Test
 {
-    public class DualTests
+    public class TDualSubstractionOperator
     {
         [Test]
         public void SubtractionOperator_SubtractingDualNumbers_ReturnsCorrectResult()

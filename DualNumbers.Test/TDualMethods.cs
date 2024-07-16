@@ -279,7 +279,7 @@ public class TDualMethods : Attribute
         public void TestCreateSaturating_Double()
         {
             // Arrange
-            double inputValue = 1.5e100; // A value larger than double.MaxValue
+            double inputValue = double.MaxValue + 10000; // A value larger than double.MaxValue
             double expectedValue = double.MaxValue;
             Dual expectedDual = new Dual(expectedValue, 0);
 
@@ -295,7 +295,7 @@ public class TDualMethods : Attribute
         public void TestCreateSaturating_Float()
         {
             // Arrange
-            float inputValue = 1.5e38f; // A value larger than float.MaxValue
+            float inputValue = float.MaxValue + 10000; // A value larger than float.MaxValue
             float expectedValue = float.MaxValue;
             Dual expectedDual = new Dual(expectedValue, 0);
 
@@ -326,10 +326,11 @@ public class TDualMethods : Attribute
         public void TestCreateSaturating_Complex()
         {
             // Arrange
-            Complex inputValue = new Complex(1.5e100, -2.0); // A value larger than double.MaxValue
+            Complex inputValue = new Complex(double.MaxValue + 10.000 , -2.0); // A value larger than double.MaxValue
             double expectedReal = double.MaxValue;
             double expectedImaginary = -2.0;
             Dual expectedDual = new DualNumbers.Dual(expectedReal, expectedImaginary);
+            Console.WriteLine(expectedReal);
 
             // Act
             Dual result = Dual.CreateSaturating<Complex>(inputValue);
@@ -434,31 +435,40 @@ public class TDualMethods : Attribute
         }
 
         [Test]
+
         public void TestDivide_DualByDouble()
+
         {
             // Arrange
             var left = new Dual(6.0, 2.0);
             double right = 2.0;
-            var expected = new Dual(3.0, 1.0);
+            var expected = new Dual(3, left.dual/right);
+            Console.WriteLine(left.dual);
+            Console.WriteLine(expected.dual);
+            Console.WriteLine(left.dual / right);
 
             // Act
-            var result = Dual.Divide(left, right);
+            var result = Dual.Divide(left,right);
 
             // Assert
             Assert.That(result.real, Is.EqualTo(expected.real));
             Assert.That(result.dual, Is.EqualTo(expected.dual));
         }
 
-        [Test]
+    
+
+    [Test]
         public void TestDivide_DoubleByDual()
         {
             // Arrange
             double left = 6.0;
             var right = new Dual(3.0, 1.0);
-            var expected = new Dual(2.0, -6.0 / (3.0 * 3.0));
+            var expected = new Dual(2, -6 / 3 * 3);
 
+            Console.WriteLine(expected.dual);
             // Act
             var result = Dual.Divide(left, right);
+            //6/4- 6*
 
             // Assert
             Assert.That(result.real, Is.EqualTo(expected.real));

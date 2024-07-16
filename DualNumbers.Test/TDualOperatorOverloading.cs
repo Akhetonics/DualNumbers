@@ -64,18 +64,18 @@
             }
 
             // DivisionWithNaN
-            [TestCase(double.NaN, 2, 2, double.NaN, 4)]
+            [TestCase(double.NaN, 2, 2, double.NaN, 1)]
             [TestCase(4, double.NaN, 2, 2, double.NaN)]
             //DivisionUnderflow
             [TestCase(1e-308, 1e-308, 1.0, 1e-308, 1e-308)]
             //DivisionByZero
-            [TestCase(4, 2, 0, double.PositiveInfinity, 0)]
+            [TestCase(4, 2, 0, double.PositiveInfinity, double.PositiveInfinity)]
             //DivisionWith1
             [TestCase(4, 2, 1, 4, 2)]
             //regular
-            [TestCase(6, 3, 3, 2, 9)]
-            [TestCase(10, 5, 2, 5, 10)]
-            [TestCase(4, 2, 2, 2, 4)]
+            [TestCase(6, 3, 3, 2, 1)]
+            [TestCase(10, 5, 2, 5, 2.5)]
+            [TestCase(4, 2, 2, 2, 1)]
 
             public void Division_DualAndDouble(double aReal, double aDual, double b, double expectedReal, double expectedDual)
             {

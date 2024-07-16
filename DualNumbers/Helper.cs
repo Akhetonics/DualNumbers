@@ -2,8 +2,9 @@ using System.Numerics;
 using System.Text;
 
 namespace DualNumbers;
+//internal static class Helper
+public  static class Helper
 
-internal static class Helper
 {
     internal static Span<char> ConvertFromUtf8Bytes(ReadOnlySpan<byte> byteSpan)
     {
@@ -14,5 +15,6 @@ internal static class Helper
     }
 
     internal static Dual ToDual(Complex value) => new(value.Real, value.Imaginary);
-    internal static Complex ToComplex(Dual value) => new(value.real, value.dual);
+    //internal static Complex ToComplex(Dual value) => new(value.real, value.dual);
+    public static Complex ToComplex(Dual value) => new(value.real, value.dual);
 }
