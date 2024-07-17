@@ -7,9 +7,13 @@ namespace DualNumbers.Test
 
 {
     [TestFixture]
-    public class DualNumberBaseTests
+
+    
+    
+    public  class DualNumberBaseTests 
     {
-        private readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;
+        //readonly CultureInfo cultureInfo = CultureInfo.InvariantCulture;
+        
 
         [Test]
         public void Radix_ReturnsCorrectValue()
@@ -43,38 +47,43 @@ namespace DualNumbers.Test
         public void TryConvertFromChecked_ConvertsCorrectly()
         {
             double doubleValue = 3.5;
-            bool success = INumberBase<Dual>.TryConvertFromChecked<Dual>(doubleValue, out var result);
+            INumberBase<Dual> NumberBase = new Dual();
+            Dual value;
+            bool success = Dual.TryConvertFromChecked<double>(doubleValue, out var result);
+
+
             Assert.That(success, Is.True);
             Assert.That(result.real, Is.EqualTo(3.5));
             Assert.That(result.dual, Is.EqualTo(0.0));
-            
         }
 
         [Test]
         public void TryConvertFromSaturating_ConvertsCorrectly()
         {
             double doubleValue = double.MaxValue;
-            bool success = INumberBase<Dual>.TryConvertFromSaturating(doubleValue, out var result);
+                
+            INumberBase<Dual> NumberBase = new Dual(); 
+            bool success = Dual.TryConvertFromSaturating<double>(doubleValue, out var result);
             Assert.That(success, Is.True);
             Assert.That(result.real, Is.EqualTo(double.MaxValue));
-            Assert.That(result.dual, Is.EqualTo(double.MaxValue));
+            Assert.That(result.dual, Is.EqualTo(0));
         }
 
         [Test]
         public void TryConvertFromTruncating_ConvertsCorrectly()
         {
             double doubleValue = 3.5;
-            bool success = INumberBase<Dual>.TryConvertFromTruncating(doubleValue, out var result);
+            bool success = Dual.TryConvertFromTruncating<double>(doubleValue, out var result);
             Assert.That(success, Is.True);
             Assert.That(result.real, Is.EqualTo(3.0));
-            Assert.That(result.dual, Is.EqualTo(0.0));
+            Assert.That(result.dual, Is.EqualTo(0));
         }
 
         [Test]
         public void TryConvertToChecked_ConvertsCorrectly()
         {
             Dual dual = new Dual(3.0, 4.0);
-            bool success = INumberBase<Dual>.TryConvertToChecked(dual, out double result);
+            bool success = Dual.TryConvertToChecked(dual, out double result);
             Assert.That(success, Is.True);
             Assert.That(result, Is.EqualTo(5.0).Within(1e-6));
         }
@@ -82,8 +91,8 @@ namespace DualNumbers.Test
         [Test]
         public void TryConvertToSaturating_ConvertsCorrectly()
         {
-            var dual = new Dual(double.MaxValue, double.MaxValue);
-            bool success = INumberBase<Dual>.TryConvertToSaturating(dual, out float result);
+            Dual dual = new Dual(double.MaxValue, double.MaxValue);
+            bool success = Dual.TryConvertToSaturating<float>(dual, out float result);
             Assert.That(success, Is.True);
             Assert.That(result, Is.EqualTo(float.MaxValue));
         }
@@ -92,10 +101,15 @@ namespace DualNumbers.Test
         public void TryConvertToTruncating_ConvertsCorrectly()
         {
             var dual = new Dual(3.5, 0.0);
-            bool success = INumberBase<Dual>.TryConvertToTruncating(dual, out int result);
+            bool success = Dual.TryConvertToTruncating<int>(dual, out int result);
             Assert.That(success, Is.True);
             Assert.That(result, Is.EqualTo(3));
         }
+
+
+
+
+
 
         [Test]
         public void UnsupportedOperators_ThrowNotSupportedException()

@@ -5,5 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+	<PropertyGroup>
+		<AssemblyInfo>false</AssemblyInfo>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>DualNumbers.Test</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
 
 </Project>
