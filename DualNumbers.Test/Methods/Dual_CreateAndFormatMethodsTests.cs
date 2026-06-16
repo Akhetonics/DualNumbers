@@ -9,6 +9,301 @@ public class DualCreateAndFormatMethodsTests
 {
     [TestCase(3.25, 3.25, 0.0)]
     [TestCase(-7.5, -7.5, 0.0)]
+    public void TryConvertFromChecked_FromDouble_ReturnsExpected(double value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromChecked(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(3.25f, 3.25, 0.0)]
+    [TestCase(-7.5f, -7.5, 0.0)]
+    public void TryConvertFromChecked_FromFloat_ReturnsExpected(float value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromChecked(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(7, 7.0, 0.0)]
+    [TestCase(-13, -13.0, 0.0)]
+    public void TryConvertFromChecked_FromInt_ReturnsExpected(int value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromChecked(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(2.0, -5.0)]
+    [TestCase(-3.5, 0.25)]
+    public void TryConvertFromChecked_FromComplex_ReturnsExpected(double real, double imaginary)
+    {
+        bool ok = Dual.TryConvertFromChecked(new Complex(real, imaginary), out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, real, imaginary);
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertFromChecked_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertFromChecked(value, out Dual result);
+
+        Assert.That(ok, Is.False);
+        DualMethodAssert.AreEqual(result, 0.0, 0.0);
+    }
+
+    [TestCase(3.25, 3.25, 0.0)]
+    [TestCase(-7.5, -7.5, 0.0)]
+    public void TryConvertFromSaturating_FromDouble_ReturnsExpected(double value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromSaturating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(3.25f, 3.25, 0.0)]
+    [TestCase(-7.5f, -7.5, 0.0)]
+    public void TryConvertFromSaturating_FromFloat_ReturnsExpected(float value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromSaturating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(7, 7.0, 0.0)]
+    [TestCase(-13, -13.0, 0.0)]
+    public void TryConvertFromSaturating_FromInt_ReturnsExpected(int value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromSaturating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(2.5, -7.75)]
+    [TestCase(double.PositiveInfinity, double.NegativeInfinity)]
+    public void TryConvertFromSaturating_FromComplex_ReturnsExpected(double real, double imaginary)
+    {
+        bool ok = Dual.TryConvertFromSaturating(new Complex(real, imaginary), out Dual result);
+
+        Assert.That(ok, Is.True);
+
+        double expectedReal = double.IsPositiveInfinity(real) ? double.MaxValue : real;
+        double expectedDual = double.IsNegativeInfinity(imaginary) ? double.MinValue : imaginary;
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertFromSaturating_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertFromSaturating(value, out Dual result);
+
+        Assert.That(ok, Is.False);
+        DualMethodAssert.AreEqual(result, 0.0, 0.0);
+    }
+
+    [TestCase(9.99, 9.0, 0.0)]
+    [TestCase(-2.01, -2.0, 0.0)]
+    public void TryConvertFromTruncating_FromDouble_ReturnsExpected(double value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromTruncating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(9.99f, 9.0, 0.0)]
+    [TestCase(-2.01f, -2.0, 0.0)]
+    public void TryConvertFromTruncating_FromFloat_ReturnsExpected(float value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromTruncating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(7, 7.0, 0.0)]
+    [TestCase(-13, -13.0, 0.0)]
+    public void TryConvertFromTruncating_FromInt_ReturnsExpected(int value, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromTruncating(value, out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(2.9, -7.2, 2.0, -7.0)]
+    [TestCase(-1.1, 3.9, -1.0, 3.0)]
+    public void TryConvertFromTruncating_FromComplex_ReturnsExpected(double real, double imaginary, double expectedReal, double expectedDual)
+    {
+        bool ok = Dual.TryConvertFromTruncating(new Complex(real, imaginary), out Dual result);
+
+        Assert.That(ok, Is.True);
+        DualMethodAssert.AreEqual(result, expectedReal, expectedDual);
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertFromTruncating_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertFromTruncating(value, out Dual result);
+
+        Assert.That(ok, Is.False);
+        DualMethodAssert.AreEqual(result, 0.0, 0.0);
+    }
+
+    [TestCase(3.0, 4.0, 5)]
+    [TestCase(8.0, 6.0, 10)]
+    public void TryConvertToChecked_ToInt_ReturnsExpectedMagnitude(double real, double dual, int expected)
+    {
+        bool ok = Dual.TryConvertToChecked(new Dual(real, dual), out int result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [TestCase(3.0, 4.0, 5.0)]
+    [TestCase(1.0, 0.0, 1.0)]
+    public void TryConvertToChecked_ToDouble_ReturnsExpectedMagnitude(double real, double dual, double expected)
+    {
+        bool ok = Dual.TryConvertToChecked(new Dual(real, dual), out double result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(expected).Within(1e-12));
+    }
+
+    [Test]
+    public void TryConvertToChecked_ToComplex_ReturnsExpectedComplex()
+    {
+        bool ok = Dual.TryConvertToChecked(new Dual(3.0, 4.0), out Complex result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(new Complex(3.0, 4.0)));
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertToChecked_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertToChecked(new Dual(1.0, 2.0), out long result);
+
+        Assert.That(ok, Is.False);
+        Assert.That(result, Is.EqualTo(0L));
+    }
+
+    [TestCase(3.0, 4.0, 5)]
+    [TestCase(1e308, 1e308, int.MaxValue)]
+    public void TryConvertToSaturating_ToInt_ReturnsExpected(double real, double dual, int expected)
+    {
+        bool ok = Dual.TryConvertToSaturating(new Dual(real, dual), out int result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void TryConvertToSaturating_ToComplex_ReturnsExpectedComplex()
+    {
+        bool ok = Dual.TryConvertToSaturating(new Dual(3.0, 4.0), out Complex result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(new Complex(3.0, 4.0)));
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertToSaturating_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertToSaturating(new Dual(1.0, 2.0), out long result);
+
+        Assert.That(ok, Is.False);
+        Assert.That(result, Is.EqualTo(0L));
+    }
+
+    [Test]
+    public void TryConvertToChecked_ToFloat_ReturnsExpectedMagnitude()
+    {
+        bool ok = Dual.TryConvertToChecked(new Dual(3.0, 4.0), out float result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(5.0f));
+    }
+
+    [Test]
+    public void TryConvertToSaturating_ToDouble_ReturnsExpectedMagnitude()
+    {
+        bool ok = Dual.TryConvertToSaturating(new Dual(3.0, 4.0), out double result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(5.0).Within(1e-12));
+    }
+
+    [Test]
+    public void TryConvertToSaturating_ToFloat_ReturnsExpectedMagnitude()
+    {
+        bool ok = Dual.TryConvertToSaturating(new Dual(3.0, 4.0), out float result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(5.0f));
+    }
+
+    [TestCase(3.0, 4.0, 5)]
+    [TestCase(8.0, 6.0, 10)]
+    public void TryConvertToTruncating_ToInt_ReturnsExpectedMagnitude(double real, double dual, int expected)
+    {
+        bool ok = Dual.TryConvertToTruncating(new Dual(real, dual), out int result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void TryConvertToTruncating_ToComplex_ReturnsExpectedComplex()
+    {
+        bool ok = Dual.TryConvertToTruncating(new Dual(3.0, 4.0), out Complex result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(new Complex(3.0, 4.0)));
+    }
+
+    [TestCase(7L)]
+    [TestCase(-4L)]
+    public void TryConvertToTruncating_UnsupportedType_ReturnsFalse(long value)
+    {
+        bool ok = Dual.TryConvertToTruncating(new Dual(1.0, 2.0), out long result);
+
+        Assert.That(ok, Is.False);
+        Assert.That(result, Is.EqualTo(0L));
+    }
+
+    [Test]
+    public void TryConvertToTruncating_ToDouble_ReturnsExpectedMagnitude()
+    {
+        bool ok = Dual.TryConvertToTruncating(new Dual(3.0, 4.0), out double result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(5.0).Within(1e-12));
+    }
+
+    [Test]
+    public void TryConvertToTruncating_ToFloat_ReturnsExpectedMagnitude()
+    {
+        bool ok = Dual.TryConvertToTruncating(new Dual(3.0, 4.0), out float result);
+
+        Assert.That(ok, Is.True);
+        Assert.That(result, Is.EqualTo(5.0f));
+    }
+
+    [TestCase(3.25, 3.25, 0.0)]
+    [TestCase(-7.5, -7.5, 0.0)]
     public void CreateChecked_FromDouble_ReturnsExpected(double value, double expectedReal, double expectedDual)
     {
         Dual result = Dual.CreateChecked(value);

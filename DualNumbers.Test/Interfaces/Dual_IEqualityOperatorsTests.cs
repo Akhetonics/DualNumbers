@@ -17,4 +17,15 @@ public class DualIEqualityOperatorsTests
         Assert.That(AreEqual(left, new Dual(3.0, 2.0)), Is.True);
         Assert.That(AreNotEqual(left, new Dual(3.0, 5.0)), Is.True);
     }
+
+    [Test]
+    public void IEqualityOperators_BranchCombinations_WorkAsExpected()
+    {
+        Dual reference = new(3.0, 2.0);
+
+        Assert.That(AreEqual(reference, new Dual(9.0, 2.0)), Is.False);
+        Assert.That(AreEqual(reference, new Dual(3.0, 9.0)), Is.False);
+        Assert.That(AreNotEqual(reference, new Dual(9.0, 2.0)), Is.True);
+        Assert.That(AreNotEqual(reference, new Dual(3.0, 2.0)), Is.False);
+    }
 }
