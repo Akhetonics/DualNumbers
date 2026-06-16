@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
     
@@ -28,13 +28,14 @@ jobs:
       run: dotnet restore DualNumbers.Test/DualNumbers.Test.csproj
     
     - name: Test DualNumbers.Test
-      run: dotnet test DualNumbers.Test/DualNumbers.Test.csproj --no-build --verbosity normal
+      run: dotnet test DualNumbers.Test/DualNumbers.Test.csproj --collect:"XPlat Code Coverage" --results-directory ./DualNumbers.Test/TestResults --verbosity normal
 
     
     - name: Coveralls
-      uses: coverallsapp/github-action@master
+      uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./DualNumbers.Test/TestResults/Coverage/coverage.opencover.xml
+        file: ./DualNumbers.Test/TestResults/**/coverage.cobertura.xml
+        format: cobertura
         flag-name: run-${{ github.run_id }}
         coveralls-endpoint: https://coveralls.io
