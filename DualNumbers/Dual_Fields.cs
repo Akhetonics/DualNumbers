@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Numerics;
-
-namespace DualNumbers;
+﻿namespace DualNumbers;
 
 public readonly partial struct Dual
 {

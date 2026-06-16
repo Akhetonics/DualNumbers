@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace DualNumbers;
 
 public readonly partial struct Dual : ISpanFormattable

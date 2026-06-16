@@ -1,22 +1,21 @@
 ﻿using System.Numerics;
-using System.Text.RegularExpressions;
 
 namespace DualNumbers;
 
 public readonly partial struct Dual
 {
     public static Dual Acos(Dual value)
-        => new(Double.Acos(value.real), -value.dual / Math.Sqrt(1 - value.real * value.real));
+        => new(double.Acos(value.real), -value.dual / Math.Sqrt(1 - value.real * value.real));
 
     public static Dual Add(Dual left, Dual right) => left + right;
-    public static Dual Add(Dual left, Double right) => left + right;
-    public static Dual Add(Double left, Dual right) => left + right;
+    public static Dual Add(Dual left, double right) => left + right;
+    public static Dual Add(double left, Dual right) => left + right;
 
     public static Dual Asin(Dual value)
-        => new(Double.Asin(value.real), value.dual / Math.Sqrt(1 - value.real * value.real));
+        => new(double.Asin(value.real), value.dual / Math.Sqrt(1 - value.real * value.real));
 
     public static Dual Atan(Dual value)
-        => new(Double.Atan(value.real), value.dual / (1 + value.real * value.real));
+        => new(double.Atan(value.real), value.dual / (1 + value.real * value.real));
 
     public static Dual Conjugate(Dual value) => new(value.real, -value.dual);
 
@@ -127,8 +126,8 @@ public readonly partial struct Dual
     }
 
     public static Dual Divide(Dual left, Dual right) => left / right;
-    public static Dual Divide(Dual left, Double right) => left / right;
-    public static Dual Divide(Double left, Dual right) => left / right;
+    public static Dual Divide(Dual left, double right) => left / right;
+    public static Dual Divide(double left, Dual right) => left / right;
 
     public static Dual Exp(Dual value) => new(Math.Exp(value.real), value.dual * Math.Exp(value.real));
 
@@ -140,8 +139,8 @@ public readonly partial struct Dual
     public static Dual Log10(Dual value) => new(Math.Log10(value.real), value.dual / (value.real * Math.Log(10)));
 
     public static Dual Multiply(Dual left, Dual right) => left * right;
-    public static Dual Multiply(Dual left, Double right) => left * right;
-    public static Dual Multiply(Double left, Dual right) => left * right;
+    public static Dual Multiply(Dual left, double right) => left * right;
+    public static Dual Multiply(double left, Dual right) => left * right;
 
     public static Dual Negate(Dual value) => -value;
 
@@ -168,8 +167,8 @@ public readonly partial struct Dual
     public static Dual Sqrt(Dual value) => new(Math.Sqrt(value.real), value.dual / (2 * Math.Sqrt(value.real)));
 
     public static Dual Subtract(Dual left, Dual right) => left - right;
-    public static Dual Subtract(Dual left, Double right) => left - right;
-    public static Dual Subtract(Double left, Dual right) => left - right;
+    public static Dual Subtract(Dual left, double right) => left - right;
+    public static Dual Subtract(double left, Dual right) => left - right;
 
     public static Dual Tan(Dual value) => Sin(value) / Cos(value);
 

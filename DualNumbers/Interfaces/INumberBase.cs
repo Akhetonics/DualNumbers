@@ -1,10 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
 
 namespace DualNumbers;
 
-public readonly partial struct Dual : System.Numerics.INumberBase<Dual>
+public readonly partial struct Dual : INumberBase<Dual>
 {
     static int INumberBase<Dual>.Radix => Radix;
 
